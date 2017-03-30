@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+   <link rel="stylesheet" type="text/css" href="css/jquery.mmenu.all.css" />
+   <link rel="stylesheet" type="text/css" href="css/alertas.css" />
+	<link rel="stylesheet" type="text/css" href="css/geral.css" />
+
+    <title>Vero Demo</title>
+    <script>
+    function sincronizar(){
+    	bi.Alertas({tipo: "sucesso", texto: "Sincronizado com sucesso."});
+    	bi.Alertas({tipo: "confirma", texto: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, neque."});
+    	bi.Alertas({tipo: "erro", texto: "Lorem ipsum dolor sit amet."});
+    	bi.Alertas({tipo: "aviso", texto: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, omnis!."});
+    	return false;
+    }
+    </script>
+</head>
+
+<body>
+
+
+<!-- Inicio [nav] -->
+<nav id="my-menu" class="mmclasse">
+	<ul>
+		<li><a href="#" onclick="return mmclose(function(){window.location='index.html';});">Home</a></li>
+		<li><a href="#" onclick="return mmclose(function(){window.location='sincronizar.html';});">Sincronizar</a></li>
+		<li><a href="#" onclick="return mmclose(function(){window.location='pedido.html';});">Pedido</a></li>
+		<li><a href="#" onclick="return mmclose(function(){window.location='clientes.html';});">Clientes</a></li>
+	</ul>
+</nav>
+<!-- Fim [nav] -->
+
+<!-- Inicio [pag] -->
+<div class="pag">
+	
+	<!-- Inicio [head] -->
+	<div class="head Fixed">
+		<div class="statusbar"></div>
+
+		<div class="head_mob">
+			<a href="#my-menu" class="botao_head ico_bars"></a>
+			<span class="titulo">Sincronizar</span>
+		</div>
+	</div>
+	<!-- Fim [head] -->
+
+	<!-- Inicio [body] -->
+	<div class="body">
+
+		<!-- Inicio [wrap] -->
+		<div class="wrap">
+
+			<br/>
+			
+			<div class="botoes">
+				<a href="#" class="botao" onclick="return sincronizar();">Sincronizar conteúdo</a>
+			</div>
+
+			<br/>
+
+			<span class="texto">Lista sincornizada:</span>
+
+			<!-- Inicio [tabela] -->
+			<table class="tabela" cellpadding="0" cellspacing="0">
+				<tr class="t_head">
+					<td>Nome</td>
+					<td>Latitude</td>
+					<td>Longitude</td>
+					<td>Endereço</td>
+					<td>Bairro</td>
+				</tr>
+
+				<tr>
+					<td>Fulano de Tal</td>
+					<td>143.094509</td>
+					<td>143.234583</td>
+					<td>Rua sei lá do que</td>
+					<td>Ipanema</td>
+				</tr>
+			</table>
+			<!-- Fim [tabela] -->
+			
+			<br/>
+
+			<!-- Inicio [lista] -->
+			<div class="lista">
+				<span class="titulo">Fulano de Tal:</span>
+				<span class="linha">
+					<span class="label">Latitude</span>
+					<span class="desc">143.094509</span>
+				</span>
+
+				<span class="linha">
+					<span class="label">Longitude</span>
+					<span class="desc">143.234583</span>
+				</span>
+
+				<span class="linha">
+					<span class="label">Endereço</span>
+					<span class="desc">Rua sei lá do que</span>
+				</span>
+
+				<span class="linha">
+					<span class="label">Bairro</span>
+					<span class="desc">Ipanema</span>
+				</span>
+			</div>
+			<!-- Fim [lista] -->
+
+			<br/>
+
+			<!-- Inicio [lista] -->
+			<div class="lista">
+				<span class="titulo">Lista sincronizada:</span>
+				<span class="linha">
+					<span class="label">Nome: <b>Fulano de tal</b></span>
+					<span class="desc">Longitude: <b>143.094509</b></span>
+					<span class="desc">Latitude: <b>143.234583</b></span>
+					<span class="desc">Endereço: <b>Rua sei lá do que</b></span>
+					<span class="desc">Bairro: <b>Ipanema</b></span>
+				</span>
+			</div>
+			<!-- Fim [lista] -->
+
+		</div>
+		<!-- Fim [wrap] -->
+
+	</div>
+	<!-- Fim [body] -->
+
+	<!-- Inicio [foot] -->
+	<div class="foot"></div>
+	<!-- Inicio [Fim] -->
+
+</div>
+<!-- Fim [pag] -->
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+
+	<script language="JavaScript" src="js/jquery.js" type="text/javascript"></script>
+	<script language="JavaScript" src="js/biblioteca.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.mmenu.min.all.js"></script>
+	<script type="text/javascript" src="js/geral.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
