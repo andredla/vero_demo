@@ -40,6 +40,7 @@ var app = {
 		bi.Config();
 		$("#nav").replaceWith(layout.nav);
 		jqmmenu();
+		//navigator.splashscreen.hide();
 		//$("body").css({display: ""});
       //console.log('Received Event: ' + id);
     }
