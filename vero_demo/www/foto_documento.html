@@ -71,6 +71,7 @@
 		<br/>
 		<div class="botoes">
 			<a href="#" class="botao botao_ico" onclick="return getPhoto(pictureSource.SAVEDPHOTOALBUM);"><span class="ico_camera"></span></a>
+			<a href="#" class="botao_v botao_ico" onclick="return capturePhoto();"><span class="ico_camera"></span></a>
 		</div>
 		<br/>
 		<img style="display:none; width: 100%;" id="image" src="" />
@@ -105,9 +106,10 @@
 
 		// PhoneGap is ready to be used!
 		function onDeviceReady() {
-			console.log("onDeviceReady...");
+			//console.log("onDeviceReady...");
 		    pictureSource=navigator.camera.PictureSourceType;
 		    destinationType=navigator.camera.DestinationType;
+		    //console.log(destinationType);
 		}
 
 	    // A button will call this function
@@ -128,11 +130,18 @@
 	    // Called when a photo is successfully retrieved
 	    function onPhotoURISuccess(imageURI) {
 	      // Uncomment to view the image file URI 
-	      console.log(imageURI);
+	      //console.log(imageURI);
 
 	      var largeImage = document.getElementById('image');
 	      largeImage.style.display = 'block';
 	      largeImage.src = imageURI;
+	    }
+
+	    // A button will call this function
+	    function capturePhoto() {
+	      // Take picture using device camera and retrieve image as base64-encoded string
+	      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+	      destinationType: destinationType.FILE_URI});
 	    }
 
     </script>
