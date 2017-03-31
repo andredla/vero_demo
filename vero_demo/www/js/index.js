@@ -38,6 +38,7 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 		bi.Config();
+		$("#nav").replaceWith(layout.nav);
 		jqmmenu();
 		//$("body").css({display: ""});
       //console.log('Received Event: ' + id);
