@@ -70,10 +70,10 @@
 	<div class="body">
 		<br/>
 		<div class="botoes">
-			<a href="#" class="botao botao_ico" onclick="return capturePhoto();"><span class="ico_camera"></span></a>
+			<a href="#" class="botao botao_ico" onclick="return getPhoto(pictureSource.SAVEDPHOTOALBUM);"><span class="ico_camera"></span></a>
 		</div>
 		<br/>
-		<img style="display:none; width:60px; height:60px;" id="smallImage" src="" />
+		<img style="display:none; width: 100%;" id="image" src="" />
 	</div>
 	<!-- Fim [body] -->
 
@@ -97,44 +97,44 @@
     <script type="text/javascript">
         app.initialize();
 
-		var pictureSource;   // picture source
-		var destinationType; // sets the format of returned value 
+	    var pictureSource;   // picture source
+	    var destinationType; // sets the format of returned value 
 
 		// Wait for PhoneGap to connect with the device
 		document.addEventListener("deviceready",onDeviceReady,false);
 
 		// PhoneGap is ready to be used!
 		function onDeviceReady() {
+			console.log("onDeviceReady...");
 		    pictureSource=navigator.camera.PictureSourceType;
 		    destinationType=navigator.camera.DestinationType;
 		}
 
-		// Called when a photo is successfully retrieved
-		function onPhotoDataSuccess(imageData) {
-		  // Get image handle
-		  var smallImage = document.getElementById('smallImage');
+	    // A button will call this function
+	    function getPhoto(source) {
+	      // Retrieve image file location from specified source
+	      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+	        destinationType: destinationType.FILE_URI,
+	        sourceType: source });
+	      return false;
+	    }
 
-		  // Unhide image elements
-		  smallImage.style.display = 'block';
+	    // Called if something bad happens.
+	    function onFail(message) {
+	      //alert('Failed because: ' + message);
+	      bi.Alertas({tipo:"erro", texto: message});
+	    }
 
-		  // Show the captured photo
-		  // The inline CSS rules are used to resize the image
-		  smallImage.src = "data:image/jpeg;base64," + imageData;
-		}
+	    // Called when a photo is successfully retrieved
+	    function onPhotoURISuccess(imageURI) {
+	      // Uncomment to view the image file URI 
+	      console.log(imageURI);
 
-		// Called if something bad happens.
-		// 
-		function onFail(message) {
-			bi.Alertas({tipo: "erro" texto: message});
-		}
+	      var largeImage = document.getElementById('image');
+	      largeImage.style.display = 'block';
+	      largeImage.src = imageURI;
+	    }
 
-		// A button will call this function
-		function capturePhoto() {
-		  // Take picture using device camera and retrieve image as base64-encoded string
-		  console.log("capturePhoto");
-		  navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: destinationType });
-		  return false;
-		}
     </script>
 </body>
 
