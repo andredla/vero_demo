@@ -74,6 +74,8 @@
 		<div class="botoes">
 			<a href="#" class="botao botao_ico" onclick="return getPhoto(pictureSource.SAVEDPHOTOALBUM);"><span class="ico_camera"></span></a>
 			<a href="#" class="botao_v botao_ico" onclick="return capturePhoto();"><span class="ico_camera"></span></a>
+			<a href="#" class="botao botao_ico" onclick="return capturePhotoPersist();"><span class="ico_camera"></span> Persiste</a>
+			<a href="#" class="botao_x botao_ico" onclick="return deletePhotoPersist();"><span class="ico_camera"></span> Deleta</a>
 		</div>
 		<br/>
 		<img style="display:none; width: 100%;" id="image" src="" />
@@ -112,6 +114,8 @@
 		    pictureSource=navigator.camera.PictureSourceType;
 		    destinationType=navigator.camera.DestinationType;
 		    //console.log(destinationType);
+
+		    fotoPersistida();
 		}
 
 	    // A button will call this function
@@ -147,6 +151,41 @@
 	      destinationType: destinationType.FILE_URI, saveToPhotoAlbum: true});
 	    }
 
+	    function capturePhotoPersist(){
+	    	navigator.camera.getPicture(sucessoPersiste, onFail, { quality: 50, 
+	    	destinationType: destinationType.FILE_URI});
+	    }
+
+	    function sucessoPersiste(imageURI){
+	    	window.resolveLocalFileSystemURL(imageURI, function(fileEntry){
+	    		//bi.Alertas({texto: fileEntry.fullPath});
+	    		window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(directoryEntry){
+	    			fileEntry.moveTo(directoryEntry, "foto.png", function(newFileEntry){
+	    				navigator.camera.cleanup();
+	    				fotoPersistida();
+	    			}, onFail);
+	    		}, onFail);
+	    	}, onFail);
+	    }
+
+	    function fotoPersistida(){
+	    	window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs){
+	    		fs.getFile("foto.png", {create: false}, function(fileEntry){
+	    			$("#image").attr({src: fileEntry.toURL()}).show();
+	    		}, function(){
+	    			$("#image").attr({src: ""}).hide();
+	    		});	
+	    	}, onFail);
+	    }
+
+	    function deletePhotoPersist(){
+	    	window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs){
+	    		fs.getFile("foto.png", {create: false}, function(fileEntry){
+	    			fileEntry.remove();
+	    			fotoPersistida();
+	    		}, function(){});
+	    	}, onFail);
+	    }
     </script>
 </body>
 
