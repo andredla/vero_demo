@@ -69,6 +69,8 @@
 	<!-- Inicio [body] -->
 	<div class="body">
 		<br/>
+		<div class="texto" id="console"></div>
+		<br/>
 		<div class="botoes">
 			<a href="#" class="botao botao_ico" onclick="return getPhoto(pictureSource.SAVEDPHOTOALBUM);"><span class="ico_camera"></span></a>
 			<a href="#" class="botao_v botao_ico" onclick="return capturePhoto();"><span class="ico_camera"></span></a>
@@ -117,7 +119,7 @@
 	      // Retrieve image file location from specified source
 	      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
 	        destinationType: destinationType.FILE_URI,
-	        sourceType: source });
+	        sourceType: source});
 	      return false;
 	    }
 
@@ -131,6 +133,7 @@
 	    function onPhotoURISuccess(imageURI) {
 	      // Uncomment to view the image file URI 
 	      //console.log(imageURI);
+	      //$("#console").html(imageURI);
 
 	      var largeImage = document.getElementById('image');
 	      largeImage.style.display = 'block';
