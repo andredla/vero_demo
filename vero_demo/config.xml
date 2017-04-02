@@ -8,6 +8,8 @@
         PhoneGap Team
     </author>
     <content src="index.html" />
+    <preference name="orientation" value="portrait" />
+	
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
@@ -114,4 +116,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <engine name="ios" spec="~4.3.1" />
 </widget>
