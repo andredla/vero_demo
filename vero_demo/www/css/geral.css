@@ -124,6 +124,13 @@ background: -o-linear-gradient(#3CBF65, #3AAA5C);
 background: -moz-linear-gradient(#3CBF65, #3AAA5C);
 background: linear-gradient(#3CBF65, #3AAA5C);
 }
+.noty_confirma {color: #ffffff; border-color: #249BB6;
+background-color: #00B1D9;
+background: -webkit-linear-gradient(#3BCCED, #00B1D9);
+background: -o-linear-gradient(#3BCCED, #00B1D9);
+background: -moz-linear-gradient(#3BCCED, #00B1D9);
+background: linear-gradient(#3BCCED, #00B1D9);
+}
 
 .mm-menu {background-color: #4E8AC9;}
 .mm-menu .mm-navbar .mm-title {color: #ffffff; font-weight: bold;}
