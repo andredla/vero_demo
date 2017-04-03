@@ -16,7 +16,7 @@ html, body {height: auto !important;}
 .wrap {position: relative; display: inline-block; width: 680px; text-align: left;}
 
 .logo {position: relative; display: inline-block; width: 100px; height: 100px;}
-.head_mob {position: relative; display: block; text-align: center;}
+.head_mob {position: relative; display: block; text-align: center; z-index: 2;}
 .head .titulo {position: relative; display: inline-block; margin-left: 70px; margin-right: 70px; height: 80px; line-height: 80px; font-size: 30px; font-weight: bold; overflow: hidden;}
 
 .bem_vindo {position: relative; display: block; text-align: center; font-size: 30px; padding-top: 30vh;}
@@ -91,7 +91,40 @@ html, body {height: auto !important;}
 /* Fim [mmenu] */
 
 /* Inicio [temas] */
+.notificacao {position: relative; display: block; background-color: transparent; z-index: 1;}
+.ui-notification {position: relative; display: block; padding: 5px; margin: 1px !important; text-align: left; border: 1px solid;}
+.ui-notification-content {position: relative; display: block; margin-right: 20px;}
+.ui-notification-content h4 {position: relative; display: inline-block; padding-right: 10px; padding-bottom: 2px; font-size: 18px; font-weight: bold;}
+.ui-notification-content p {position: relative; display: inline-block; font-size: 16px;}
+.ui-notification-close {position: absolute; display: inline-block; right: 5px; top: 50%; margin-top: -10px;}
+.ui-notification-close .ui-icon {position: relative; display: inline-block; width: 20px; height: 20px; background: url(../imgs/icons-svg/delete-black.svg) center no-repeat;}
+/* Fim [temas] */
+
+/* Inicio [temas] */
 /* Inicio [default] */
+.ui-notification {color: #444444; background-color: #ffffff; border-color: #cccccc;}
+.noty_aviso {color: #414141; border-color: #C9B77B;
+background-color: #F3DE98;
+background: -webkit-linear-gradient(#FFEDBD, #F3DE98);
+background: -o-linear-gradient(#FFEDBD, #F3DE98);
+background: -moz-linear-gradient(#FFEDBD, #F3DE98);
+background: linear-gradient(#FFEDBD, #F3DE98);
+}
+.noty_erro {color: #ffffff; border-color: #D52F1C;
+background-color: #EA5241;
+background: -webkit-linear-gradient(#FF6D61, #EA5241);
+background: -o-linear-gradient(#FF6D61, #EA5241);
+background: -moz-linear-gradient(#FF6D61, #EA5241);
+background: linear-gradient(#FF6D61, #EA5241);
+}
+.noty_sucesso {color: #ffffff; border-color: #298344;
+background-color: #3AAA5C;
+background: -webkit-linear-gradient(#3CBF65, #3AAA5C);
+background: -o-linear-gradient(#3CBF65, #3AAA5C);
+background: -moz-linear-gradient(#3CBF65, #3AAA5C);
+background: linear-gradient(#3CBF65, #3AAA5C);
+}
+
 .mm-menu {background-color: #4E8AC9;}
 .mm-menu .mm-navbar .mm-title {color: #ffffff; font-weight: bold;}
 .mm-navbar {border-color: #70A8E4;}
@@ -102,7 +135,7 @@ html, body {height: auto !important;}
 
 .pag {background-color: #EBF1F6;}
 .statusbar {background-color: #4E8AC9;}
-.head {background-color: #4E8AC9;}
+.head_mob {background-color: #4E8AC9;}
 .head .titulo {color: #ffffff;}
 .botao_head {background-color: #4E8AC9;}
 .botao_head:active {background-color: #70AEEE;}
@@ -145,7 +178,3 @@ background: linear-gradient(#FF7378, #F25056);
 	.wrap {width: 100%;}
 	.div_alerta {width: 90%;}
 }
-
-
-.svg_ico {width: 20px; height: 20px;}
-.svg_ico path {fill: #000000;}
