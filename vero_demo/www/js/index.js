@@ -40,6 +40,13 @@ var app = {
 		bi.Config();
 		$("#nav").replaceWith(layout.nav);
 		jqmmenu();
+		
+		$(".notificacao").notification({
+			sticky: true,
+			show: { effect: 'slide', options: {direction: "up"}, speed: 300, callback: function(){} },
+			hide: { effect: 'slide', options: {direction: "up"}, speed: 250, callback: function(){} }
+		});
+
 		//navigator.splashscreen.hide();
 		//$("body").css({display: ""});
       //console.log('Received Event: ' + id);
