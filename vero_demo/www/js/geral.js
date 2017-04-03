@@ -32,3 +32,14 @@ $(function(){
 	}
 });
 }
+
+function noty(options){
+	var opt = $.extend({
+		titulo: "",
+		texto: "",
+		stiky: true,
+		classe: ""
+	}, options);
+
+	$(".notificacao").notification("create", {title: opt.titulo, content: opt.texto}, {stiky: opt.stiky, notificationClass: opt.classe});
+}
