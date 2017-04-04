@@ -21,6 +21,7 @@ html, body {height: auto !important;}
 
 .bem_vindo {position: relative; display: block; text-align: center; font-size: 30px; padding-top: 30vh;}
 .texto {position: relative; display: block; padding: 10px 0px;}
+.scroll {max-height: 200px;}
 /* Fim [pagina] */
 
 /* Inicio [tabela] */
@@ -38,6 +39,7 @@ html, body {height: auto !important;}
 
 .lista_d .label, .lista_d .desc {margin-right: 40px;}
 .lista_d .seta {position: absolute; display: inline-block; right: 10px; top: 50%; margin-top: -10px; width: 20px; height: 20px; background: url('../imgs/seta.svg') center no-repeat;}
+.lista_d .custom {position: absolute; display: inline-block; right: 10px; top: 50%; margin-top: -10px; width: 20px; height: 20px; cursor: pointer;}
 /* Fim [lista] */
 
 /* Inicio [botoes] */
@@ -53,6 +55,8 @@ html, body {height: auto !important;}
 .ico_bars {background: url(../imgs/icons-svg/bars-white.svg) center no-repeat; background-size: 25px;}
 .ico_gear {background: url(../imgs/icons-svg/gear-white.svg) center no-repeat; background-size: 20px;}
 .ico_camera {background: url(../imgs/icons-svg/camera-white.svg) center no-repeat; background-size: 20px;}
+.ico_mais {background: url(../imgs/icons-svg/plus-white.svg) center no-repeat; background-size: 20px;}
+.ico_delete {background: url(../imgs/icons-svg/delete-black.svg) center no-repeat; background-size: 20px;}
 /* Fim [icones] */
 
 /* Inicio [all] */
@@ -102,6 +106,11 @@ html, body {height: auto !important;}
 
 /* Inicio [temas] */
 /* Inicio [default] */
+.ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-selectmenu-button:focus {color: #444444; background-color: #eeeeee;}
+.ui-selectmenu-button .ui-selectmenu-icon, .ui-selectmenu-button:hover .ui-selectmenu-icon, .ui-selectmenu-button:focus .ui-selectmenu-icon {background: url(../imgs/icons-svg/carat-d-black.svg) center no-repeat; background-size: 20px;}
+.ui-menu .ui-menu-item {color: #777777; background-color: #efefef;}
+.ui-menu .ui-state-active {color: #ffffff; background-color: #45C2FC; border-color: #3A9ECC;}
+
 .ui-notification {color: #444444; background-color: #ffffff; border-color: #cccccc;}
 .noty_aviso {color: #414141; border-color: #C9B77B;
 background-color: #F3DE98;
