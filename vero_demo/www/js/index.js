@@ -43,6 +43,7 @@ var app = {
 		
 		$(".notificacao").notification({
 			sticky: true,
+			duration: 4000,
 			show: { effect: 'slide', options: {direction: "up"}, speed: 300, callback: function(){} },
 			hide: { effect: 'slide', options: {direction: "up"}, speed: 250, callback: function(){} }
 		});
