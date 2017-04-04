@@ -47,6 +47,8 @@ var app = {
 			hide: { effect: 'slide', options: {direction: "up"}, speed: 250, callback: function(){} }
 		});
 
+		$(".pag").addClass("animated slideInLeft");
+
 		//navigator.splashscreen.hide();
 		//$("body").css({display: ""});
       //console.log('Received Event: ' + id);
