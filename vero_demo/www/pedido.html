@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+   <link rel="stylesheet" type="text/css" href="css/jquery.mmenu.all.css" />
+   <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="css/alertas.css" />
+	<link rel="stylesheet" type="text/css" href="css/geral.css" />
+
+    <title>Vero Demo</title>
+</head>
+
+<body>
+
+<!-- Inicio [nav] -->
+<div id="nav"></div>
+<!-- Fim [nav] -->
+
+<div class="temp" style="display: none;">
+	<span class="linha">
+		<span class="label">
+			Oferta -
+			<select name="oferta">
+				<option value="">Oferta 01</option>
+				<option value="">Oferta 02</option>
+				<option value="">Oferta 03</option>
+				<option value="">Oferta 04</option>
+				<option value="">Oferta 05</option>
+				<option value="">Oferta 06</option>
+				<option value="">Oferta 07</option>
+				<option value="">Oferta 08</option>
+				<option value="">Oferta 09</option>
+				<option value="">Oferta 10</option>
+				<option value="">Oferta 11</option>
+				<option value="">Oferta 12</option>
+				<option value="">Oferta 13</option>
+				<option value="">Oferta 14</option>
+				<option value="">Oferta 15</option>
+				<option value="">Oferta 16</option>
+				<option value="">Oferta 17</option>
+				<option value="">Oferta 18</option>
+				<option value="">Oferta 19</option>
+				<option value="">Oferta 20</option>
+				<option value="">Oferta 21</option>
+				<option value="">Oferta 22</option>
+				<option value="">Oferta 23</option>
+				<option value="">Oferta 24</option>
+				<option value="">Oferta 25</option>
+				<option value="">Oferta 26</option>
+				<option value="">Oferta 27</option>
+				<option value="">Oferta 28</option>
+				<option value="">Oferta 29</option>
+				<option value="">Oferta 30</option>
+			</select>
+		</span>
+		<span class="desc">
+			Assinatura - R$ 10,00
+		</span>
+		<a class="custom ico_delete" onclick="return linha_remove($(this).parent());"></a>
+	</span>
+</div>
+
+<!-- Inicio [pag] -->
+<div class="pag">
+	
+	<!-- Inicio [head] -->
+	<div class="head Fixed">
+		<div class="statusbar"></div>
+
+		<div class="head_mob">
+			<a href="#my-menu" class="botao_head ico_bars"></a>
+			<span class="titulo">Pedido</span>
+		</div>
+
+		<div class="notificacao"></div>
+	</div>
+	<!-- Fim [head] -->
+
+	<!-- Inicio [body] -->
+	<div class="body" style="display: none;">
+		<!-- Inicio [wrap] -->
+		<div class="wrap">
+
+			<!-- Inicio [lista] -->
+			<div class="lista lista_d">
+				<span class="titulo">Lista de pedidos:</span>
+				<span class="linha">
+					<span class="label">
+						Oferta -
+						<select name="oferta">
+							<option>Liberty plus</option>
+							<option>Liberty menos</option>
+							<option>Oferta Liberty mais controle</option>
+						</select>
+					</span>
+					<span class="desc">
+						Assinatura - R$ 10,00
+					</span>
+					<a class="custom ico_delete" onclick="return linha_remove($(this).parent());"></a>
+				</span>
+			</div>
+			<!-- Fim [lista] -->
+
+			<br/>
+			<span class="botoes">
+				<a href="#" class="botao botao_ico" onclick="return linha_cria();"><span class="ico_mais"></span> Incluir oferta</a>
+				<a href="#" class="botao_v" onclick="return false;">Finalizar</a>				
+			</span>
+
+		</div>
+		<!-- Fim [wrap] -->
+	</div>
+	<!-- Fim [body] -->
+
+	<!-- Inicio [foot] -->
+	<div class="foot"></div>
+	<!-- Inicio [Fim] -->
+
+</div>
+<!-- Fim [pag] -->
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+
+	<script language="JavaScript" src="js/jquery.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script language="JavaScript" src="js/biblioteca.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.mmenu.min.all.js"></script>
+	<script type="text/javascript" src="js/geral.js"></script>
+	<script type="text/javascript" src="js/layout.js"></script>
+	<script type="text/javascript" src="js/jqueryui_notification.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+
+		document.addEventListener("deviceready",onDeviceReady,false);
+		function onDeviceReady(){
+			$(".lista select").selectmenu().selectmenu( "menuWidget" ).addClass( "scroll" );
+			$(".body").show();
+		}
+
+		function linha_cria(){
+			var linha = $($(".temp .linha").get(0)).clone();
+			//$(".lista").append(linha);
+			linha.find("select").selectmenu().selectmenu( "menuWidget" ).addClass( "scroll" );
+			linha.hide();
+			$(".lista").append(linha);
+			$($(".lista .linha").last()).slideDown(200, function(){});
+			return false;
+		}
+
+		function linha_remove(el){
+			//console.log(el);
+			//el.remove();
+			el.slideUp(200, function(){
+				$(this).remove();
+			});
+			return false;
+		}
+    </script>
+</body>
+
+</html>
