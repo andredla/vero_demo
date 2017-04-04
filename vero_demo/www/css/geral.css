@@ -29,7 +29,7 @@ html, body {height: auto !important; background-color: #4E8AC9;}
 
 .bem_vindo {position: relative; display: block; text-align: center; font-size: 30px; padding-top: 30vh;}
 .texto {position: relative; display: block; padding: 10px 0px;}
-.scroll {max-height: 200px;}
+.scroll {max-height: 200px; -webkit-overflow-scrolling: touch;}
 /* Fim [pagina] */
 
 /* Inicio [tabela] */
