@@ -9,5 +9,6 @@ layout.nav = "" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"clientes.html\";});'>Clientes</a></li>" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"foto_documento.html\";});'>Fotografar Documento</a></li>" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"file.html\";});'>File</a></li>" +
+		"<li><a href='#' onclick='return mmclose(function(){window.location=\"include.html\";});'>Include</a></li>" +
 	"</ul>" +
 "</nav>";
