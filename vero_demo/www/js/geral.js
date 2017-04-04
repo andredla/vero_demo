@@ -37,9 +37,48 @@ function noty(options){
 	var opt = $.extend({
 		titulo: "",
 		texto: "",
-		stiky: true,
+		gruda: true,
 		classe: ""
 	}, options);
 
-	$(".notificacao").notification("create", {title: opt.titulo, content: opt.texto}, {stiky: opt.stiky, notificationClass: opt.classe});
+	$(".notificacao").notification("create", {title: opt.titulo, content: opt.texto}, {sticky: opt.gruda, notificationClass: opt.classe});
+}
+
+function addScript(src, callback) {
+	var s = document.createElement( 'script' );
+	s.setAttribute( 'src', src );
+	s.setAttribute( 'language', "JavaScript" );
+	s.setAttribute( 'type', "text/javascript" );
+	s.onload=callback;
+	document.head.appendChild( s );
+}
+
+function addStyle(src, callback) {
+	var s = document.createElement( 'link' );
+	s.setAttribute( 'href', src );
+	s.setAttribute( 'rel', "stylesheet" );
+	s.setAttribute( 'type', "text/css" );
+	s.onload=callback;
+	document.head.appendChild( s );
+}
+
+function include_init(){
+	addStyle("css/jquery.mmenu.all.css", function(){});	
+	addStyle("css/animate.css", function(){});	
+	addStyle("css/alertas.css", function(){});	
+	addStyle("css/geral.css", function(){});	
+
+	addScript("js/jquery.js", function(){
+		addScript("js/jquery-ui.js", function(){
+			addScript("js/biblioteca.js", function(){
+				addScript("js/jquery.mmenu.min.all.js", function(){
+					addScript("js/layout.js", function(){
+						addScript("js/jqueryui_notification.js", function(){
+							addScript("js/index.js", function(){ init(); });
+						});
+					});
+				});
+			});
+		});
+	});
 }
