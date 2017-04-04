@@ -178,21 +178,29 @@
 		}
 
 		function linha_cria(){
+			/*
 			var linha = $($(".temp .linha").get(0)).clone();
-			//$(".lista").append(linha);
 			linha.find("select").selectmenu().selectmenu( "menuWidget" ).addClass( "scroll" );
 			linha.hide();
 			$(".lista").append(linha);
 			$($(".lista .linha").last()).slideDown(200, function(){});
+			*/
+			
+			var linha = $($(".temp .linha").get(0)).clone();
+			linha.find("select").selectmenu().selectmenu( "menuWidget" ).addClass( "scroll" );
+			$(".lista").append(linha);
+			$($(".lista .linha").last()).addClass("animated fadeInDown").bind("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){ $(this).removeClass("animated fadeInDown"); });
 			return false;
 		}
 
 		function linha_remove(el){
-			//console.log(el);
-			//el.remove();
+			/*
 			el.slideUp(200, function(){
 				$(this).remove();
 			});
+			*/
+
+			el.css({"background-color": "#ffffff", "z-index": 2}).addClass("animated zoomOutLeft").bind("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){ $(this).remove(); });
 			return false;
 		}
     </script>
