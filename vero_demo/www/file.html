@@ -133,6 +133,11 @@
 			var reader = new FileReader();
 			reader.onloadend = function(evt) {
 			    $("#console").html(evt.target.result);
+			    var str = evt.target.result;
+			    var spt = str.split("\n");
+			    for(var a=0; a<spt.length; a++){
+			    	noty({texto: spt[a], classe: "noty_sucesso", gruda: false});
+			    }
 			};
 			reader.readAsText(file);
 		}
@@ -148,10 +153,17 @@
 		}
 
 		function gotFileWriter(writer) {
-		    writer.onwrite = function(evt) {
-		        //bi.Alertas({tipo: "sucesso", texto: "escrevendo arquivo..."});
-		    };
-		    writer.write("some sample text");
+			
+		   writer.onwriteend = function(evt){
+		    	writer.seek(writer.length);
+		    	writer.write("\nflag=true");
+			   writer.onwriteend = function(evt){
+			   		noty({texto: "dados gravados.", classe: "noty_sucesso", gruda: false});
+			   }
+		   }
+
+		   writer.write("token=12345");
+
 		    // contents of file now 'some sample text'
 		    //writer.truncate(5);
 		    // contents of file now 'some sample'
@@ -159,6 +171,20 @@
 		    // contents of file still 'some sample' but file pointer is after the 'e' in 'some'
 		    //writer.write(" different text");
 		    // contents of file now 'some different text'
+		    //writer.onwriteend = function(evt) {
+		    /*
+		    try{
+		    	writer.seek(writer.length);
+		    	writer.write("flag=true");
+		    }catch(erro){
+				Object.keys(erro).forEach(function(key,index) {
+					noty({texto: key + "=" + erro[key], classe: "noty_erro", gruda: false});
+				    // key: the name of the object key
+				    // index: the ordinal position of the key within the object 
+				});
+		    }
+		    */
+		   //}
 		}
 
 		function fileDelete(){
