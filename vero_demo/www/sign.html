@@ -8,13 +8,11 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-
-   <link rel="stylesheet" type="text/css" href="css/jquery.mmenu.all.css" />
-   <link rel="stylesheet" type="text/css" href="css/animate.css" />
-	<link rel="stylesheet" type="text/css" href="css/alertas.css" />
-	<link rel="stylesheet" type="text/css" href="css/geral.css" />
-
     <title>Vero Demo</title>
+   <script type="text/javascript" src="js/geral.js"></script>
+	<script>
+		include_init();
+	</script>
     <style>
 
 .box {position: relative; display: block; *display: inline; z-index: 0;}
@@ -59,27 +57,28 @@
 		<!-- Inicio [wrap] -->
 		<div class="wrap">
 
-<form id="form" name="form" method="post" action="upload.asp">
-	<input type="hidden" name="sign" value="...">
-</form>
+			<form id="form" name="form" method="post" action="upload.asp">
+				<input type="hidden" name="sign" value="...">
+			</form>
 
-<div class="debug"></div>
-<div class="pag">
-	<br/>
-	<div class="botoes">
-		<a href="#" class="botao" onclick="return limpar();">Limpar</a>
-		<!-- <span class="btn" onclick="salvar();">Salvar</span> -->
-		<span class="botao" onclick="erase_set(0);">Caneta</span>
-		<span class="botao" onclick="erase_set(10);">Borracha</span>
-		<span class="botao" onclick="upload();">Upload</span>
-	</div>
-	<br/>
-	<div id="box" class="box">
-		<img id="thumb" class="thumb" src="thumb.jpg" />
-		<!-- <span id="thumb" class="thumb"><span class="guia"></span></span> -->
-		<span id="sign" class="sign"></span>
-	</div>
-</div>
+			<div class="debug"></div>
+
+				<div class="botoes">
+					<a href="#" class="botao" onclick="return limpar();">Limpar</a>
+					<!-- <a href="#" class="botao" onclick="return salvar();">Salvar</a> -->
+					<a href="#" class="botao" onclick="return erase_set(0);">Caneta</a>
+					<a href="#" class="botao" onclick="return erase_set(10);">Borracha</a>
+					<a href="#" class="botao" onclick="return upload();">Upload</a>
+				</div>
+
+				<br/><br/>
+
+				<div id="box" class="box">
+					<img id="thumb" class="thumb" src="imgs/thumb.jpg" />
+					<!-- <span id="thumb" class="thumb"><span class="guia"></span></span> -->
+					<span id="sign" class="sign">
+					</span>
+				</div>
 
 		</div>
 		<!-- Fim [wrap] -->
@@ -96,254 +95,248 @@
 
 
     <script type="text/javascript" src="cordova.js"></script>
-
-	<script language="JavaScript" src="js/jquery.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/jquery-ui.js"></script>
-	<script language="JavaScript" src="js/biblioteca.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/jquery.mmenu.min.all.js"></script>
-	<script type="text/javascript" src="js/geral.js"></script>
-	<script type="text/javascript" src="js/layout.js"></script>
-	<script type="text/javascript" src="js/jqueryui_notification.js"></script>	
-
-    <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
-        app.initialize();
-		document.addEventListener("deviceready",onDeviceReady,false);
+    	function init(){
+    		app.initialize();
+    		document.addEventListener("deviceready",onDeviceReady,false);
+    	}
 
-var ctx = "";
-var canvas = "";
-var drawing = false;
-var moved = false;
-var touch_start = "";
-var touch_move = "";
-var pen = 2;
-var erase = 0;
+		var ctx = "";
+		var canvas = "";
+		var drawing = false;
+		var moved = false;
+		var touch_start = "";
+		var touch_move = "";
+		var pen = 2;
+		var erase = 0;
 
-function limpar(){
-	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-	return false;
-}
+		function limpar(){
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			return false;
+		}
+
+		function has_touch() {
+			return 'ontouchstart' in window;
+		}
+
+		function regras(event){
+			var ret = true;
+			//console.log(event);
+			if(event.type.indexOf("touch") >= 0){
+				if(event.targetTouches.length > 1){
+					return false;
+				}
+			}
+			return ret;
+		}
+
+		function regra_moved(){
+			var ret = true;
+			var pos = bi.GetPos({id: "canvas"});
+			if(event.type.indexOf("touch") >= 0){
+				var mx = Math.abs( (touch_move.targetTouches[0].pageX - pos.esquerda) - (touch_start.targetTouches[0].pageX - pos.esquerda) );
+				var my = Math.abs( (touch_move.targetTouches[0].pageY - pos.topo) - (touch_start.targetTouches[0].pageY - pos.topo) );
+				if(mx > 5 && my > 5){
+					ret =  false;
+				}
+			}
+			//$(".debug").html( "mx="+mx+" my="+my );
+			return ret;
+		}
+
+		function get_x(event){
+			var ret = "";
+			var pos = bi.GetPos({id: "canvas"});
+			if(event.type.indexOf("touch") >= 0){
+				ret = event.targetTouches[0].pageX - pos.esquerda;
+			}else{
+				ret = event.offsetX;
+			}
+			return ret;
+		}
+
+		function get_y(event){
+			var ret = "";
+			var pos = bi.GetPos({id: "canvas"});
+			if(event.type.indexOf("touch") >= 0){
+				ret = event.targetTouches[0].pageY - pos.topo;
+			}else{
+				ret = event.offsetY;
+			}
+			return ret;
+		}
+
+		function addCanvas(){
+			var pos = bi.GetPos({id: "thumb"});
+			var c = $("<canvas id='canvas' width='"+pos.largura+"' height='"+pos.altura+"' style='z-index: 10;'></canvas>");
+			$(".sign").append( c );
+			ctx = c[0].getContext("2d");
+			canvas = $("#canvas");
+		}
+
+		function render(x, y){
+			ctx.lineTo(x, y);
+			ctx.strokeStyle = "#000000";	
+			ctx.lineJoin = "round";
+			ctx.lineCap = "round";
+			if(erase > 0){
+				ctx.globalCompositeOperation = 'destination-out';
+				ctx.lineWidth = erase;
+			}else{
+				ctx.globalCompositeOperation = 'source-over';
+				ctx.lineWidth = pen;	
+			}
+			ctx.stroke();
+		}
+
+		function start(event){
+			if(regras(event)){
+				drawing = true;
+				touch_start = event;
+				touch_move = event;
+
+				var x = get_x(event);
+				var y = get_y(event);
+
+				ctx.beginPath();
+				ctx.moveTo(x, y);
+				event.preventDefault();
+			}
+		}
+
+		function move(event){
+			if(drawing == true && regras(event)){
+				moved = true;
+				touch_move = event;
+
+				var x = get_x(event);
+				var y = get_y(event);
+				render(x, y);
+				//$(".debug").html("x="+x+" y="+y);
+			}
+		}
+
+		function end(event){
+			drawing = false;
+			ctx.closePath();
+
+			if(regra_moved(event)){
+				if(moved == false){
+					var x = get_x(touch_start);
+					var y = get_y(touch_start);
+
+					//$(".debug").html("x="+x+" y="+y);
+
+					ctx.beginPath();
+					ctx.arc(x, y, pen, 0 ,2*Math.PI);
+					ctx.fill();
+					ctx.closePath();
+				}
+			}
+			moved = false;
+		}
+
+
+		function salvar(){
+			var data = canvas[0].toDataURL("image/png");
+			$("body").append("<img src="+data+">");
+		}
+
+		function upload(){
+			var data = canvas[0].toDataURL("image/png");
+			//var blob = dataURItoBlob(data);
+			fix_data = data.replace(/^data:image\/(png|jpg);base64,/, "");
+
+			document.form.sign.value = fix_data;
+			//document.form.submit();
+			bi.Ajax({endereco: "upload.asp", formulario: "form", sucesso: upload_ok});
+
+			return false;
+		}
+
+		function upload_ok(){
+			$("body").append( bi.ajax_resposta );
+		}
+
+		/*function dataURItoBlob(dataURI) {
+		    // convert base64/URLEncoded data component to raw binary data held in a string
+		    var byteString;
+		    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+		        byteString = atob(dataURI.split(',')[1]);
+		    else
+		        byteString = unescape(dataURI.split(',')[1]);
+
+		    // separate out the mime component
+		    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+		    // write the bytes of the string to a typed array
+		    var ia = new Uint8Array(byteString.length);
+		    for (var i = 0; i < byteString.length; i++) {
+		        ia[i] = byteString.charCodeAt(i);
+		    }
+
+		    return new Blob([ia], {type: mimeString});
+		}*/
+
+		function keep_draw(){
+			var data = canvas_old[0].toDataURL("image/png");
+
+			//var ctx_old = canvas_old[0].getContext("2d");
+			//var w_old = ctx_old.canvas.width;
+			//var h_old = ctx_old.canvas.height;
+			var w = ctx.canvas.width;
+			var h = ctx.canvas.height;
+
+			var img = new Image();
+			img.src = data;
+
+			img.width = w;
+			img.height = h;
+
+			img.onload = function (){
+				ctx.drawImage(img, 0, 0, img.width, img.height);
+			}
+		}
+
+		function resize(){
+			var  w = bi.GetTelaLargura();
+			//var h = bi.GetTelaAltura();
+			if(page_wid != w){
+				canvas_old = canvas;
+				page_wid = w;
+				$("#canvas").remove();
+				iniciar();
+				keep_draw();
+			}
+		}
+
+		function erase_set(num){
+			erase = num;
+			return false;
+		}
 
 		function onDeviceReady(){
 
-var page_wid = bi.GetTelaLargura();
-var canvas_old = "";
+			var page_wid = bi.GetTelaLargura();
+			var canvas_old = "";
 
-if(has_touch() == false || bi.navegador.tipo == "android"){
-	window.addEventListener("resize", resize, false);
-}else{
-	window.addEventListener("orientationchange", resize, false);
-}
+			if(has_touch() == false || bi.navegador.tipo == "android"){
+				window.addEventListener("resize", resize, false);
+			}else{
+				window.addEventListener("orientationchange", resize, false);
+			}
 
-function has_touch() {
-	return 'ontouchstart' in window;
-}
+			function iniciar(){
+				addCanvas();
 
-function regras(event){
-	var ret = true;
-	//console.log(event);
-	if(event.type.indexOf("touch") >= 0){
-		if(event.targetTouches.length > 1){
-			return false;
-		}
-	}
-	return ret;
-}
-
-function regra_moved(){
-	var ret = true;
-	var pos = bi.GetPos({id: "canvas"});
-	if(event.type.indexOf("touch") >= 0){
-		var mx = Math.abs( (touch_move.targetTouches[0].pageX - pos.esquerda) - (touch_start.targetTouches[0].pageX - pos.esquerda) );
-		var my = Math.abs( (touch_move.targetTouches[0].pageY - pos.topo) - (touch_start.targetTouches[0].pageY - pos.topo) );
-		if(mx > 5 && my > 5){
-			ret =  false;
-		}
-	}
-	//$(".debug").html( "mx="+mx+" my="+my );
-	return ret;
-}
-
-function get_x(event){
-	var ret = "";
-	var pos = bi.GetPos({id: "canvas"});
-	if(event.type.indexOf("touch") >= 0){
-		ret = event.targetTouches[0].pageX - pos.esquerda;
-	}else{
-		ret = event.offsetX;
-	}
-	return ret;
-}
-
-function get_y(event){
-	var ret = "";
-	var pos = bi.GetPos({id: "canvas"});
-	if(event.type.indexOf("touch") >= 0){
-		ret = event.targetTouches[0].pageY - pos.topo;
-	}else{
-		ret = event.offsetY;
-	}
-	return ret;
-}
-
-function addCanvas(){
-	alert("ok");
-	var pos = bi.GetPos({id: "thumb"});
-	var c = $("<canvas id='canvas' width='"+pos.largura+"' height='"+pos.altura+"' style='z-index: 10;'></canvas>");
-	$(".sign").append( c );
-	ctx = c[0].getContext("2d");
-	canvas = $("#canvas");
-}
-
-function render(x, y){
-	ctx.lineTo(x, y);
-	ctx.strokeStyle = "#000000";	
-	ctx.lineJoin = "round";
-	ctx.lineCap = "round";
-	if(erase > 0){
-		ctx.globalCompositeOperation = 'destination-out';
-		ctx.lineWidth = erase;
-	}else{
-		ctx.globalCompositeOperation = 'source-over';
-		ctx.lineWidth = pen;	
-	}
-	ctx.stroke();
-}
-
-function start(event){
-	if(regras(event)){
-		drawing = true;
-		touch_start = event;
-		touch_move = event;
-
-		var x = get_x(event);
-		var y = get_y(event);
-
-		ctx.beginPath();
-		ctx.moveTo(x, y);
-		event.preventDefault();
-	}
-}
-
-function move(event){
-	if(drawing == true && regras(event)){
-		moved = true;
-		touch_move = event;
-
-		var x = get_x(event);
-		var y = get_y(event);
-		render(x, y);
-		//$(".debug").html("x="+x+" y="+y);
-	}
-}
-
-function end(event){
-	drawing = false;
-	ctx.closePath();
-
-	if(regra_moved(event)){
-		if(moved == false){
-			var x = get_x(touch_start);
-			var y = get_y(touch_start);
-
-			//$(".debug").html("x="+x+" y="+y);
-
-			ctx.beginPath();
-			ctx.arc(x, y, pen, 0 ,2*Math.PI);
-			ctx.fill();
-			ctx.closePath();
-		}
-	}
-	moved = false;
-}
-
-
-function salvar(){
-	var data = canvas[0].toDataURL("image/png");
-	$("body").append("<img src="+data+">");
-}
-
-function upload(){
-	var data = canvas[0].toDataURL("image/png");
-	//var blob = dataURItoBlob(data);
-	fix_data = data.replace(/^data:image\/(png|jpg);base64,/, "");
-
-	document.form.sign.value = fix_data;
-	//document.form.submit();
-	bi.Ajax({endereco: "upload.asp", formulario: "form", sucesso: upload_ok});
-}
-
-function upload_ok(){
-	$("body").append( bi.ajax_resposta );
-}
-
-/*function dataURItoBlob(dataURI) {
-    // convert base64/URLEncoded data component to raw binary data held in a string
-    var byteString;
-    if (dataURI.split(',')[0].indexOf('base64') >= 0)
-        byteString = atob(dataURI.split(',')[1]);
-    else
-        byteString = unescape(dataURI.split(',')[1]);
-
-    // separate out the mime component
-    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-    // write the bytes of the string to a typed array
-    var ia = new Uint8Array(byteString.length);
-    for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-
-    return new Blob([ia], {type: mimeString});
-}*/
-
-function keep_draw(){
-	var data = canvas_old[0].toDataURL("image/png");
-
-	//var ctx_old = canvas_old[0].getContext("2d");
-	//var w_old = ctx_old.canvas.width;
-	//var h_old = ctx_old.canvas.height;
-	var w = ctx.canvas.width;
-	var h = ctx.canvas.height;
-
-	var img = new Image();
-	img.src = data;
-
-	img.width = w;
-	img.height = h;
-
-	img.onload = function (){
-		ctx.drawImage(img, 0, 0, img.width, img.height);
-	}
-}
-
-function resize(){
-	var  w = bi.GetTelaLargura();
-	//var h = bi.GetTelaAltura();
-	if(page_wid != w){
-		canvas_old = canvas;
-		page_wid = w;
-		$("#canvas").remove();
-		init();
-		keep_draw();
-	}
-}
-
-function erase_set(num){
-	erase = num;
-}
-
-function init(){
-	addCanvas();
-
-	canvas[0].addEventListener("touchstart", start, false);
-	canvas[0].addEventListener("touchmove", move, false);
-	canvas[0].addEventListener("touchend", end, false);
-	canvas[0].addEventListener("mousedown", start, false);
-	canvas[0].addEventListener("mousemove", move, false);
-	canvas[0].addEventListener("mouseup", end, false);
-}
-	init();
+				canvas[0].addEventListener("touchstart", start, false);
+				canvas[0].addEventListener("touchmove", move, false);
+				canvas[0].addEventListener("touchend", end, false);
+				canvas[0].addEventListener("mousedown", start, false);
+				canvas[0].addEventListener("mousemove", move, false);
+				canvas[0].addEventListener("mouseup", end, false);
+			}
+			iniciar();
 		}
     </script>
 </body>
