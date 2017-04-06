@@ -38,7 +38,7 @@
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
     <title>Vero Demo</title>
-    <script type="text/javascript" src="js/geral.js"></script>
+   <script type="text/javascript" src="js/geral.js"></script>
 	<script>
 		include_init();
 	</script>
@@ -69,10 +69,18 @@
 
 	<!-- Inicio [body] -->
 	<div class="body">
-		<div class="bem_vindo">
-			Script e Style<br/>
-			carregados dinamicamente
-		</div>
+		<br/><br/><br/><br/>
+		<span class="botoes">
+			<a href="#" class="botao" onclick="return dir_cria();">Diretório cria</a>
+			<a href="#" class="botao" onclick="return dir();">Diretório ler</a>
+			<a href="#" class="botao" onclick="return dir_del();">Diretório deleta</a>
+			<a href="#" class="botao" onclick="return path();">Arquivo path</a>
+			<a href="#" class="botao" onclick="return grava();">Grava arquivo</a>
+			<a href="#" class="botao" onclick="return ler();">Ler arquivo</a>
+			<a href="#" class="botao" onclick="return del();">Deletar arquivo</a>
+			<a href="#" class="botao" onclick="return config();">Config ler arquivo</a>
+			<a href="#" class="botao" onclick="return config_grava();">Config grava arquivo</a>
+		</span>
 	</div>
 	<!-- Fim [body] -->
 
@@ -91,7 +99,61 @@
     	}
 
     	function onDeviceReady(){
-    		noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
+    		//noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
+    	}
+
+    	function print(str){
+    		noty({texto: str, gruda: false});
+    	}
+
+    	function ler(){
+    		pg.arquivoLer({nome: "config.txt", callback: print});
+    		return false;
+    	}
+
+    	function del(){
+    		pg.arquivoDeleta({nome: "config.txt"});
+    		return false;
+    	}
+
+    	function grava(){
+    		pg.arquivoEscreve({nome: "config.txt", texto: "token=12345"});
+    	}
+		
+    	function config(){
+    		pg.configLer({nome: "config.txt", callback: function(dict){
+    			noty({texto: dict["token"], gruda: false});
+    		}});
+    		
+    		return false;
+    	}
+
+    	function config_grava(){
+    		var dic = {};
+    		dic.token = "6789";
+    		dic["bitch"] = "1";
+    		
+    		pg.configEscreve({nome: "config.txt", dict: dic});
+    		return false;
+    	}
+
+    	function path(){
+    		pg.arquivoCaminho({nome: "config.txt", callback: function(str){
+    			noty({texto: str, gruda: false});
+    			//pg.arquivoCopia({origem: str, nome: "config2.txt"});
+    		}});
+    	}
+
+    	function dir_cria(){
+    		pg.diretorioCria({nome: "pedido", callback: function(dir){
+    			noty({texto: dir.toURL(), gruda: false});
+    		}});
+    	}
+
+    	function dir(){
+    		pg.diretorioLer({nome: "pedido", callback: function(dir){
+    			noty({texto: dir.toURL(), gruda: false});
+    		}});
     	}
     </script>
 </body>
