@@ -75,15 +75,19 @@
 			<a href="#" class="botao" onclick="return dir_ler();">Diretório ler</a>
 			<a href="#" class="botao" onclick="return dir_del();">Diretório deleta</a>
 			<a href="#" class="botao" onclick="return dir_arquivos();">Diretório lista arquivos</a>
-			<br/>
+			<br/><br/>
 			<a href="#" class="botao" onclick="return path();">Arquivo caminho</a>
 			<a href="#" class="botao" onclick="return grava();">Arquivo grava</a>
 			<a href="#" class="botao" onclick="return ler();">Arquivo ler</a>
 			<a href="#" class="botao" onclick="return del();">Arquivo deletar</a>
-			<br/>
+			<br/><br/>
+			<a href="#" class="botao" onclick="return arq_download();">Arquivo download</a>
+			<a href="#" class="botao" onclick="return arq_ler();">Arquivo ler</a>
+			<br/><br/>
 			<a href="#" class="botao" onclick="return config();">Config ler arquivo</a>
 			<a href="#" class="botao" onclick="return config_grava();">Config grava arquivo</a>
-			<br/>
+			<br/><br/>
+			<a href="#" class="botao" onclick="return banco_del();">Banco del</a>
 			<a href="#" class="botao" onclick="return banco_cria();">Banco cria</a>
 			<a href="#" class="botao" onclick="return banco_ler();">Banco ler</a>
 			<a href="#" class="botao" onclick="return banco_update();">Banco update</a>
@@ -108,6 +112,22 @@
 
     	function onDeviceReady(){
     		//noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
+    	}
+
+    	function arq_download(){
+    		pg.arquivoDownload({diretorio: "pedido", nome: "config.txt", url: "https://www.google.com"});
+    	}
+
+    	function arq_ler(){
+    		pg.arquivoLer({nome: "pedido/config.txt", callback: print});
+    		return false;
+    	}
+
+    	function banco_del(){
+			navigator.storage.clear({
+			    types: [ "storage" ],
+			    includeSubdomains: true // false by default
+			});
     	}
 
     	function banco_cria(){
