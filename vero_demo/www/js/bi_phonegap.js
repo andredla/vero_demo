@@ -38,7 +38,7 @@
 				caminho: cordova.file.dataDirectory,
 				nome: "",
 				callback: function(){},
-				erro: function(err){ noty({texto: "Não foi possivel criar o diretório.", classe: "noty_erro", gruda: false}); }
+				erro: function(err){ noty({texto: "Não foi possivel ler o diretório.", classe: "noty_erro", gruda: false}); }
 			}, options);
 
 			window.resolveLocalFileSystemURL(opt.caminho, function(fs){
@@ -50,6 +50,54 @@
 			return true;
 		},
 		// Fim [diretorioLer]
+
+		// Inicio [diretorioDeleta]
+		diretorioDeleta: function(options){
+			var opt = $.extend({
+				caminho: cordova.file.dataDirectory,
+				nome: "",
+				callback: function(){},
+				erro: function(err){ noty({texto: "Não foi possivel deletar o diretório.", classe: "noty_erro", gruda: false}); }
+			}, options);
+
+			window.resolveLocalFileSystemURL(opt.caminho, function(fs){
+				fs.getDirectory(opt.nome, {create: false}, function(diretorio){
+					//diretorio.remove();
+		    		pg.diretorioArquivos({nome: opt.nome, callback: function(files){
+		    			for(var a=0; a<files.length; a++){
+		    				files[a].remove();
+		    			}
+		    			diretorio.remove();
+		    			opt.callback();
+		    		}});
+				}, opt.erro);	
+			}, opt.erro);		
+
+			return true;
+		},
+		// Fim [diretorioDeleta]
+
+		// Inicio [diretorioArquivos]
+		diretorioArquivos: function(options){
+			var opt = $.extend({
+				caminho: cordova.file.dataDirectory,
+				nome: "",
+				callback: function(){},
+				erro: function(err){ noty({texto: "Não foi possivel listar o diretório.", classe: "noty_erro", gruda: false}); }
+			}, options);
+
+			window.resolveLocalFileSystemURL(opt.caminho, function(fs){
+				fs.getDirectory(opt.nome, {create: false}, function(diretorio){
+					var directoryReader = diretorio.createReader();
+					directoryReader.readEntries(function(files){
+						opt.callback(files);
+					}, opt.erro);
+				}, opt.erro);	
+			}, opt.erro);
+
+			return true;
+		},
+		// Fim [diretorioArquivos]
 
 		// Inicio [arquivoLer]
 		arquivoLer: function(options){
