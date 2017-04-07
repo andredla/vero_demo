@@ -10,6 +10,6 @@ layout.nav = "" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"foto_documento.html\";});'>Fotografar Documento</a></li>" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"file.html\";});'>File</a></li>" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"include.html\";});'>Include</a></li>" +
-		"<li><a href='#' onclick='return mmclose(function(){window.location=\"sign.html\";});'>Sign</a></li>" +
+		"<li><a href='#' onclick='return mmclose(function(){window.location=\"sign.html\";});'>Assinatura</a></li>" +
 	"</ul>" +
 "</nav>";
