@@ -92,6 +92,8 @@
 			<a href="#" class="botao" onclick="return banco_ler();">Banco ler</a>
 			<a href="#" class="botao" onclick="return banco_update();">Banco update</a>
 			<a href="#" class="botao" onclick="return banco_drop();">Banco drop</a>
+			<br/><br/>
+			<a href="#" class="botao" onclick="return banco_custom();">Banco custom</a>
 		</span>
 	</div>
 	<!-- Fim [body] -->
@@ -120,6 +122,57 @@
 
     	function arq_ler(){
     		pg.arquivoLer({nome: "pedido/config.txt", callback: print});
+    		return false;
+    	}
+    	
+    	function banco_custom(){
+    		/*
+    		pg.arquivoEscreve({nome: "pessoas.txt", texto: "1;André;33;preto\n2;Luísa;24;loira\n3;Eraldo;46;preto"});
+    		pg.arquivoEscreve({nome: "animais.txt", texto: "1;Lipe;1\n2;Arya;2\n3;Tatá;2\n4;Tico;2\n5;Argos;3\n6;Brisa;3\n7;Babi;3\n8;Lipe;2"});
+    		*/
+    		//pg.arquivoDeleta({nome: "pessoas.txt"});
+    		//pg.arquivoDeleta({nome: "animais.txt"});
+
+    		pg.dbTabela({tabela: pg.tabelas.pessoas, find: function(obj){
+    			//noty({texto: obj.id + ":" + obj.nome, gruda: false});
+    			if(obj.cor == "preto"){
+    				return true;
+    			}return false;
+    		}, sucesso: function(obj){
+    			var tab = obj;
+	    		pg.dbTabela({tabela: pg.tabelas.animais, find: function(obj){
+	    			for(var a=0; a<tab.length; a++){
+	    				if(tab[a].id == obj.fk_pessoa){
+	    					return true;
+	    				}
+	    			}return false;
+	    		}, sucesso: function(obj){
+	    			for(var b=0; b<obj.length; b++){
+		    			noty({texto: obj[b].id + ":" + obj[b].nome + ":" + obj[b].fk_pessoa, gruda: false});
+	    			}
+	    			pg.dbTxt({tabela: obj, nome: "config.txt"});
+	    		}});
+    		}});
+
+    		/*
+    		var tab_pessoas = [
+    			{id: 1, nome: "xuxa"},
+    			{id: 2, nome: "karamba"},
+    			{id: 1, nome: "opa"}
+    		];
+
+    		pg.dbFiltro({tabela: tab_pessoas, find: function(obj){
+    			if(obj.id == "1"){
+    				return true;
+    			}
+    			return false;
+    		}, sucesso: function(obj){
+    			for(var a=0; a<obj.length; a++){
+	    			noty({texto: obj[a].id + ":" + obj[a].nome, gruda: false});
+    			}
+    		}});
+    		*/
+
     		return false;
     	}
 
