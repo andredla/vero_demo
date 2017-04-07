@@ -64,6 +64,7 @@ function addStyle(src, callback) {
 
 function include_init(){
 	addStyle("css/jquery.mmenu.all.css", function(){});	
+	addStyle("css/jquery-ui.css", function(){});	
 	addStyle("css/animate.css", function(){});	
 	addStyle("css/alertas.css", function(){});	
 	addStyle("css/geral.css", function(){});	
@@ -71,6 +72,7 @@ function include_init(){
 	addScript("js/jquery.js", function(){
 		addScript("js/jquery-ui.js", function(){
 			addScript("js/biblioteca.js", function(){
+			addScript("js/bi_phonegap.js", function(){
 				addScript("js/jquery.mmenu.min.all.js", function(){
 					addScript("js/layout.js", function(){
 						addScript("js/jqueryui_notification.js", function(){
@@ -78,6 +80,7 @@ function include_init(){
 						});
 					});
 				});
+			});
 			});
 		});
 	});
