@@ -310,6 +310,8 @@
 			}catch(err){
 				opt.erro(err);
 			}
+
+			return true;
 		},
 		// Fim [dbOpen]
 
@@ -324,8 +326,106 @@
 			pg.db.transaction(function(q){
 				q.executeSql(opt.query, [], opt.sucesso, opt.erro);
 			}, opt.erro);
-		}
+
+			return true;
+		},
 		// Fim [dbExecute]
+
+
+		tabelas: {
+			pessoas: {arquivo: "pessoas.txt", campos: ["id", "nome", "idade", "cor"]},
+			animais: {arquivo: "animais.txt", campos: ["id", "nome", "fk_pessoa"]}
+		},
+
+		// Inicio [dbTabela]
+		dbTabela: function(options){
+			var opt = $.extend({
+				tabela: null,
+				find: function(obj){ return true; },
+				sucesso: function(obj){}
+			}, options);
+
+			var ret = [];
+
+			pg.arquivoLer({nome: opt.tabela.arquivo, callback: function(str){
+				var item;
+				var spt = str.split("\n");
+				for(var a=0; a<spt.length; a++){
+					//noty({texto: spt[a], gruda: false});
+					item = spt[a].split(";");
+					var obj = {};
+					for(var b=0; b<item.length; b++){
+						obj[opt.tabela.campos[b]] = item[b];
+					}
+					if(opt.find(obj) == true){
+						ret.push(obj);
+					}
+				}
+				opt.sucesso(ret);
+			}});
+
+			return true;
+		},
+		// Fim [dbTabela]
+
+		// Inicio [dbFiltro]
+		dbFiltro: function(options){
+			var opt = $.extend({
+				tabela: null,
+				find: function(obj){ return true; },
+				sucesso: function(obj){}
+			}, options);
+
+			var ret = [];
+
+			for(var a=0; a<opt.tabela.length; a++){
+				if(opt.find(opt.tabela[a]) == true){
+					ret.push(opt.tabela[a]);
+				}
+			}
+
+			opt.sucesso(ret);
+
+			return true;
+		},
+		// Fim [dbFiltro]
+
+		// Inicio [dbTxt]
+		dbTxt: function(options){
+			var opt = $.extend({
+				tabela: null,
+				nome: "",
+				sucesso: function(){}
+			}, options);
+
+			pg.arquivoEscreve({nome: opt.nome, texto: "", callback: function(){
+				var a=0;
+
+				function write(){
+					var str = "";
+					var ch = "";
+					
+					//noty({texto: a, gruda: false});
+					$.each(opt.tabela[a], function(key, value){
+						str = str + ch + value;
+						ch = ";";
+					});
+
+					str = str + "\n";
+
+					pg.arquivoEscreve({nome: opt.nome, texto: str, callback: function(){
+						a++;
+						if(a < opt.tabela.length){
+							write();
+						}
+					}, add: true});
+				}
+
+				write();
+
+			}});
+		}
+		// Fim [dbTxt]
 
 	};
 
