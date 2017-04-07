@@ -72,8 +72,9 @@
 		<br/><br/><br/><br/>
 		<span class="botoes">
 			<a href="#" class="botao" onclick="return dir_cria();">Diretório cria</a>
-			<a href="#" class="botao" onclick="return dir();">Diretório ler</a>
+			<a href="#" class="botao" onclick="return dir_ler();">Diretório ler</a>
 			<a href="#" class="botao" onclick="return dir_del();">Diretório deleta</a>
+			<a href="#" class="botao" onclick="return dir_arquivos();">Diretório lista arquivos</a>
 			<a href="#" class="botao" onclick="return path();">Arquivo path</a>
 			<a href="#" class="botao" onclick="return grava();">Grava arquivo</a>
 			<a href="#" class="botao" onclick="return ler();">Ler arquivo</a>
@@ -142,18 +143,35 @@
     			noty({texto: str, gruda: false});
     			//pg.arquivoCopia({origem: str, nome: "config2.txt"});
     		}});
+    		return false;
     	}
 
     	function dir_cria(){
     		pg.diretorioCria({nome: "pedido", callback: function(dir){
     			noty({texto: dir.toURL(), gruda: false});
     		}});
+    		return false;
     	}
 
-    	function dir(){
+    	function dir_ler(){
     		pg.diretorioLer({nome: "pedido", callback: function(dir){
     			noty({texto: dir.toURL(), gruda: false});
     		}});
+    		return false;
+    	}
+
+    	function dir_del(){
+    		pg.diretorioDeleta({nome: "pedido"});
+    		return false;
+    	}
+
+    	function dir_arquivos(){
+    		pg.diretorioArquivos({nome: "pedido", callback: function(files){
+    			for(var a=0; a<files.length; a++){
+    				noty({texto: files[a].name, gruda: false});
+    			}
+    		}});
+    		return false;
     	}
     </script>
 </body>
