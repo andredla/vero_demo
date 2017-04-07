@@ -75,12 +75,19 @@
 			<a href="#" class="botao" onclick="return dir_ler();">Diretório ler</a>
 			<a href="#" class="botao" onclick="return dir_del();">Diretório deleta</a>
 			<a href="#" class="botao" onclick="return dir_arquivos();">Diretório lista arquivos</a>
-			<a href="#" class="botao" onclick="return path();">Arquivo path</a>
-			<a href="#" class="botao" onclick="return grava();">Grava arquivo</a>
-			<a href="#" class="botao" onclick="return ler();">Ler arquivo</a>
-			<a href="#" class="botao" onclick="return del();">Deletar arquivo</a>
+			<br/>
+			<a href="#" class="botao" onclick="return path();">Arquivo caminho</a>
+			<a href="#" class="botao" onclick="return grava();">Arquivo grava</a>
+			<a href="#" class="botao" onclick="return ler();">Arquivo ler</a>
+			<a href="#" class="botao" onclick="return del();">Arquivo deletar</a>
+			<br/>
 			<a href="#" class="botao" onclick="return config();">Config ler arquivo</a>
 			<a href="#" class="botao" onclick="return config_grava();">Config grava arquivo</a>
+			<br/>
+			<a href="#" class="botao" onclick="return banco_cria();">Banco cria</a>
+			<a href="#" class="botao" onclick="return banco_ler();">Banco ler</a>
+			<a href="#" class="botao" onclick="return banco_update();">Banco update</a>
+			<a href="#" class="botao" onclick="return banco_drop();">Banco drop</a>
 		</span>
 	</div>
 	<!-- Fim [body] -->
@@ -101,6 +108,33 @@
 
     	function onDeviceReady(){
     		//noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
+    	}
+
+    	function banco_cria(){
+    		pg.dbOpen();
+			pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS teste (id unique, texto)"});
+			pg.dbExecute({query: "DELETE FROM teste"});
+			pg.dbExecute({query: "INSERT INTO teste (id, texto) VALUES (1, 'First row')"});
+			pg.dbExecute({query: "INSERT INTO teste (id, texto) VALUES (2, 'Second row')"});
+    	}
+
+    	function banco_ler(){
+    		pg.dbOpen();
+			pg.dbExecute({query: "SELECT * FROM teste", sucesso: function(q, rs){
+				for (var a=0; a<rs.rows.length; a++){
+					noty({texto: rs.rows.item(a).id + ":" + rs.rows.item(a).texto, gruda: false});
+				}
+			}});
+    	}
+
+    	function banco_update(){
+    		pg.dbOpen();
+    		pg.dbExecute({query: "UPDATE teste SET texto='Third row' WHERE id=2"});
+    	}
+
+    	function banco_drop(){
+    		pg.dbOpen();
+    		pg.dbExecute({query: "DROP TABLE  IF EXISTS teste"});
     	}
 
     	function print(str){
