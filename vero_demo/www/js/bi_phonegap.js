@@ -11,6 +11,7 @@
 
 	private.prototype = {
 		desenvolvedor: false,
+		db: null,
 
 
 		// Inicio [diretorioCria]
@@ -262,12 +263,43 @@
 			});
 
 			pg.arquivoEscreve({caminho: opt.caminho, nome: opt.nome, texto: str, callback: opt.callback});
-		}
+		},
 		// Fim [configEscreve]
+
+		// Inicio [dbOpen]
+		dbOpen: function(options){
+			var opt = $.extend({
+				nome: "storage",
+				versao: 1,
+				size: 100000,
+				erro: function(erro){ noty({texto: "Não foi possivel criar o storage.<br/>"+erro, classe: "noty_erro", gruda: false}); }
+			}, options);
+
+			try{
+				pg.db = openDatabase(opt.nome, opt.versao, opt.nome, opt.size);
+			}catch(err){
+				opt.erro(err);
+			}
+		},
+		// Fim [dbOpen]
+
+		// Inicio [dbExecute]
+		dbExecute: function(options){
+			var opt = $.extend({
+				query: "",
+				sucesso: function(q, rs){},
+				erro: function(q, erro){ noty({texto: opt.query + " erro : " + erro.code, classe: "noty_erro", gruda: false}); }
+			}, options);
+
+			pg.db.transaction(function(q){
+				q.executeSql(opt.query, [], opt.sucesso, opt.erro);
+			}, opt.erro);
+		}
+		// Fim [dbExecute]
 
 	};
 
 	window.pg = app();
-	//$(function(){ $.storage.Init(); });
+	//$(function(){ $.pg.Init(); });
 	
 }(jQuery));
