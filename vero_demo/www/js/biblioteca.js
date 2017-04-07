@@ -3770,7 +3770,9 @@
 	
 })(jQuery);
 
+/*
 function biPhonegap(){
 	bi.Config();
 }
+*/
 // Fim [biblioteca]
