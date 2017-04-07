@@ -218,6 +218,36 @@
 		},
 		// Fim [arquivoCopia]
 
+		// Inicio [arquivoDownload]
+		arquivoDownload: function(options){
+			var opt = $.extend({
+				caminho: cordova.file.dataDirectory,
+				nome: "",
+				diretorio: "temp",
+				url: "",
+				callback: function(){},
+				sucesso: function(entry){ 
+					noty({texto: "download complete: "+entry.toURL(), classe: "noty_sucesso", gruda: false}); 
+					opt.callback(entry);
+				},
+				erro: function(error){
+			    	noty({texto: "download error source "+error.source, classe: "noty_erro", gruda: false});
+			    	noty({texto: "download error target "+error.target, classe: "noty_erro", gruda: false});
+			    	noty({texto: "download error code"+error.code, classe: "noty_erro", gruda: false});
+				}
+			}, options);
+
+			var fileTransfer = new FileTransfer();
+			var url = encodeURI(opt.url);
+
+			pg.diretorioCria({nome: opt.diretorio, callback: function(dir){
+				var path = dir.toURL() + opt.nome;
+				//noty({texto: path, gruda: false});
+				fileTransfer.download(url, path, opt.sucesso, opt.erro, false);
+			}});
+		},
+		// Fim [arquivoDownload]
+
 		// Inicio [configLer]
 		configLer: function(options){
 			var opt = $.extend({
