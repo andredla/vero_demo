@@ -11,5 +11,6 @@ layout.nav = "" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"file.html\";});'>File</a></li>" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"include.html\";});'>Include</a></li>" +
 		"<li><a href='#' onclick='return mmclose(function(){window.location=\"sign.html\";});'>Assinatura</a></li>" +
+		"<li><a href='#' onclick='return mmclose(function(){window.location=\"geo.html\";});'>GeoLocation</a></li>" +
 	"</ul>" +
 "</nav>";
