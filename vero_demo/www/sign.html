@@ -57,21 +57,10 @@
 		<!-- Inicio [wrap] -->
 		<div class="wrap">
 
-			<form id="form" name="form" method="post" action="upload.asp">
-				<input type="hidden" name="sign" value="...">
-			</form>
 
 			<div class="debug"></div>
 
-				<div class="botoes">
-					<a href="#" class="botao" onclick="return limpar();">Limpar</a>
-					<!-- <a href="#" class="botao" onclick="return salvar();">Salvar</a> -->
-					<a href="#" class="botao" onclick="return erase_set(0);">Caneta</a>
-					<a href="#" class="botao" onclick="return erase_set(10);">Borracha</a>
-					<a href="#" class="botao" onclick="return upload();">Upload</a>
-				</div>
-
-				<br/><br/>
+				
 
 				<div id="box" class="box">
 					<img id="thumb" class="thumb" src="imgs/thumb.jpg" />
@@ -79,6 +68,17 @@
 					<span id="sign" class="sign">
 					</span>
 				</div>
+                <br/><br/>
+                <div class="botoes">
+					<a href="#" class="botao" onclick="return limpar();">Limpar</a>
+                    <a href="#" class="botao" onclick="return confirmar();">Confirmar</a>
+				</div>
+                <br><br>
+                <span id="ass_save">
+                <img src="" id="ass" style="display:none;">
+                </span>
+
+				
 
 		</div>
 		<!-- Fim [wrap] -->
@@ -109,6 +109,90 @@
 		var touch_move = "";
 		var pen = 2;
 		var erase = 0;
+		
+		
+		function b64toBlob(b64Data, contentType, sliceSize) {
+			contentType = contentType || '';
+			sliceSize = sliceSize || 512;
+		
+			var byteCharacters = atob(b64Data);
+			var byteArrays = [];
+		
+			for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+				var slice = byteCharacters.slice(offset, offset + sliceSize);
+		
+				var byteNumbers = new Array(slice.length);
+				for (var i = 0; i < slice.length; i++) {
+					byteNumbers[i] = slice.charCodeAt(i);
+				}
+		
+				var byteArray = new Uint8Array(byteNumbers);
+		
+				byteArrays.push(byteArray);
+			}
+		
+			var blob = new Blob(byteArrays, {type: contentType});
+			return blob;
+		}
+		
+		
+		function onFail(message) {
+	      //alert('Failed because: ' + message);
+	      bi.Alertas({tipo:"erro", texto: message});
+	    }
+
+		function confirmar(){
+			var diretorio = cordova.file.dataDirectory;
+			var imageURI = canvas[0].toDataURL("image/png").replace(/data:image\/png;base64,/,'');
+			//b64toBlob(imageURI,"image/png","512")
+			
+			
+			window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs){
+	    		saveFile(fs, b64toBlob(imageURI,"image/png","512") ,"assinatura.png");
+	    	}, onFail);
+			
+			
+		}
+		function saveFile(filesystem, fileData, fileName) {
+			
+			//alert('1. DIRENTRY:'+filesystem+', 2 FILEDATA:'+fileData+',3 FILENAME:'+fileName);
+			  filesystem.getFile(fileName, { create: true, exclusive: false }, function (fileEntry) {
+				//alert("come");
+				  writeFile(fileEntry, fileData);
+		
+			  }, onFail);
+		  }
+		  
+		  function writeFile(fileEntry, dataObj, isAppend) {
+			//alert("write");
+			fileEntry.createWriter(function (fileWriter) {
+			
+				fileWriter.onwriteend = function() {
+					//alert("Successful file write...");
+					bi.Alertas({tipo:"sucesso", texto: "Salvo"});
+					carregar_assinatura();
+				};
+			
+				fileWriter.onerror = function(e) {
+					//alert("Failed file write: " + e.toString());
+				};
+			
+				fileWriter.write(dataObj);
+			});
+		}
+		
+		function carregar_assinatura(){
+			//alert(cordova.file.dataDirectory);
+			window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs){
+	    		fs.getFile("assinatura.png", {create: false}, function(fileEntry){
+					d = new Date();
+	    			$("#ass").attr({src: fileEntry.toURL()+"?"+d.getTime()}).show();
+					limpar();
+	    		}, function(){
+	    			$("#ass").attr({src: ""}).hide();
+	    		});	
+	    	}, onFail);	
+		}
 
 		function limpar(){
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -337,6 +421,7 @@
 				canvas[0].addEventListener("mouseup", end, false);
 			}
 			iniciar();
+			carregar_assinatura();
 		}
     </script>
 </body>
