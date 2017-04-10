@@ -309,6 +309,7 @@
 				pg.db = openDatabase(opt.nome, opt.versao, opt.nome, opt.size);
 			}catch(err){
 				opt.erro(err);
+				return false;
 			}
 
 			return true;
