@@ -133,14 +133,15 @@
     		//pg.arquivoDeleta({nome: "pessoas.txt"});
     		//pg.arquivoDeleta({nome: "animais.txt"});
 
-    		pg.dbTabela({tabela: pg.tabelas.pessoas, find: function(obj){
+    		/*
+    		pg.cdbTabela({tabela: pg.tabelas.pessoas, find: function(obj){
     			//noty({texto: obj.id + ":" + obj.nome, gruda: false});
     			if(obj.cor == "preto"){
     				return true;
     			}return false;
     		}, sucesso: function(obj){
     			var tab = obj;
-	    		pg.dbTabela({tabela: pg.tabelas.animais, find: function(obj){
+	    		pg.cdbTabela({tabela: pg.tabelas.animais, find: function(obj){
 	    			for(var a=0; a<tab.length; a++){
 	    				if(tab[a].id == obj.fk_pessoa){
 	    					return true;
@@ -150,9 +151,10 @@
 	    			for(var b=0; b<obj.length; b++){
 		    			noty({texto: obj[b].id + ":" + obj[b].nome + ":" + obj[b].fk_pessoa, gruda: false});
 	    			}
-	    			pg.dbTxt({tabela: obj, nome: "config.txt"});
+	    			pg.cdbTxt({tabela: obj, nome: "config.txt"});
 	    		}});
     		}});
+    		*/
 
     		/*
     		var tab_pessoas = [
@@ -161,7 +163,7 @@
     			{id: 1, nome: "opa"}
     		];
 
-    		pg.dbFiltro({tabela: tab_pessoas, find: function(obj){
+    		pg.cdbFiltro({tabela: tab_pessoas, find: function(obj){
     			if(obj.id == "1"){
     				return true;
     			}
@@ -172,6 +174,65 @@
     			}
     		}});
     		*/
+
+    		/*
+    		var tab_tim = [
+    			{id: 1, nome: "Fernanda"},
+    			{id: 2, nome: "Paulinha"},
+    			{id: 3, nome: "Flávinha"}
+    		];
+
+    		var tab_web = [
+    			{id: 1, nome: "André"},
+    			{id: 2, nome: "Eraldo"},
+    			{id: 3, nome: "Sérgio"},
+    			{id: 4, nome: "Thiago"}
+    		];
+
+    		var tab_proj =[
+    			{id_tim: 1, id_web: 1},
+    			{id_tim: 2, id_web: 1},
+    			{id_tim: 3, id_web: 1},
+    			{id_tim: 1, id_web: 2},
+    			{id_tim: 3, id_web: 4}
+    		];
+
+    		pg.cdbJoin({tabela: tab_proj, ret: function(ind, obj){
+    			var ret = {};
+    			for(var a=0; a<tab_tim.length; a++){
+    				var flag_tim = false;
+    				if(obj.id_tim == tab_tim[a].id){
+    					flag_tim = true;
+    					ret.id_tim = tab_tim[a].id;
+    					ret.tim = tab_tim[a].nome;
+    					break;
+    				}
+    			}
+
+    			for(var a=0; a<tab_web.length; a++){
+    				var flag_web = false;
+    				if(obj.id_web == tab_web[a].id){
+    					flag_web = true;
+    					ret.id_web = tab_web[a].id;
+    					ret.web = tab_web[a].nome;
+    					break;
+    				}
+    			}
+    			if(flag_tim && flag_web){
+    				return ret;
+    			}else{
+    				return false;
+    			}
+    		}, sucesso: function(obj){
+    			for(var a=0; a<obj.length; a++){
+	    			noty({texto: obj[a].tim + ":" + obj[a].web, gruda: false});
+    			}
+    		}});
+    		*/
+
+    		pg.arquivoLer({nome: "db/clientes.txt", callback: function(str){
+    			noty({texto: str, gruda: false});
+    		}});
 
     		return false;
     	}
@@ -221,6 +282,7 @@
 
     	function del(){
     		pg.arquivoDeleta({nome: "config.txt"});
+    		//pg.arquivoDeleta({nome: "assinatura.png"});
     		return false;
     	}
 
