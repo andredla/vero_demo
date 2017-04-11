@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+    <title>Vero Demo</title>
+   	<script type="text/javascript" src="js/geral.js"></script>   
+	<script>
+		include_init();
+	</script>
+</head>
+
+<body>
+
+
+<!-- Inicio [nav] -->
+<div id="nav"></div>
+<!-- Fim [nav] -->
+
+<!-- Inicio [pag] -->
+<div class="pag">
+	
+	<!-- Inicio [head] -->
+	<div class="head Fixed">
+		<div class="statusbar"></div>
+
+		<div class="head_mob">
+			<a href="#my-menu" class="botao_head ico_bars"></a>
+			<span class="titulo">Clientes</span>
+		</div>
+
+		<div class="notificacao"></div>
+	</div>
+	<!-- Fim [head] -->
+
+	<!-- Inicio [body] -->
+	<div class="body">
+
+		<!-- Inicio [wrap] -->
+		<div class="wrap">
+
+			<!-- Inicio [lista] -->
+			<div class="lista">
+
+				<span class="titulo">Lista por proximidade:</span>
+
+				<span id='linha_dados'></span>
+
+			</div>
+			<!-- Fim [lista] -->
+		</div>
+		<!-- Fim [wrap] -->
+
+	</div>
+	<!-- Fim [body] -->
+
+	<!-- Inicio [foot] -->
+	<div class="foot"></div>
+	<!-- Inicio [Fim] -->
+
+</div>
+<!-- Fim [pag] -->
+
+
+    <script type="text/javascript" src="cordova.js"></script>   
+    <script type="text/javascript">
+	    function init(){
+			app.initialize();
+			document.addEventListener("deviceready",onDeviceReady,false);
+		}
+    	function onDeviceReady(){
+    		//noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
+
+    		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+    	}
+    	// onSuccess Geolocation
+		//
+		function onSuccess(position) {    
+		    var mylocation = "";
+		    mylocation += "lat: " + position.coords.latitude +"<br>";
+		    mylocation += "lng: " + position.coords.longitude+"<br><br>"; 	
+
+		    var lat_origem="";
+		    var lon_origem="";
+		   	lat_origem = position.coords.latitude;
+		    lon_origem = position.coords.longitude;	   
+
+		    noty({texto: mylocation, classe: "noty_sucesso", gruda: false});
+
+		    pg.cdbTabela({tabela: pg.tabelas.clientes, sucesso: function(obj){
+    			for(var a=0; a<obj.length; a++){
+
+    				var km = getDistanceFromLatLonInKm(lat_origem,lon_origem,obj[a].lat,obj[a].lon);
+
+    				obj[a].km = km;
+	    			noty({texto: obj[a].id + ":" + obj[a].endereco + ' - km ' + km, gruda: false});					
+    			}
+
+    			obj.sort(function(a, b){
+				    var a1= a.km, b1= b.km;
+				    if(a1== b1) return 0;
+				    return a1> b1? 1: -1;
+				});
+
+				renderiza_cliente(obj);
+
+    		}});
+
+
+
+
+
+		}
+
+		// onError Callback receives a PositionError object
+		//
+		function onError(error) {
+		   // alert('4-procurando...');
+		    switch(error.code) {
+
+		        case error.PERMISSION_DENIED:
+		            noty({texto: "Permissão não concedida, favor ativar GPS e tente novamente", classe: "noty_erro", gruda: false});
+		            break;
+		        case error.POSITION_UNAVAILABLE:
+		            //output.innerHTML="Position information is unavailable please try after some time";		           
+		            noty({texto: "Localização atual não encontrada, favor tentar mais tarde.", classe: "noty_erro", gruda: false});
+		            break;
+		        case error.TIMEOUT:
+		            //output.innerHTML ="Request Timed out, please try again";		            
+		            noty({texto: "Tempo excedido, favor tente novamente.", classe: "noty_erro", gruda: false});
+		            break;
+		        case error.UNKNOWN_ERROR:
+		           // output.innerHTML="Unknown Error please try again";		            
+		            noty({texto: "Falha desconhecida, favor tente novamente.", classe: "noty_erro", gruda: false});
+		            break;
+
+		        case default
+		    		noty({texto: "Localização não encontrada, favor verifique se o GPS esta ativado.", classe: "noty_erro", gruda: false});
+		            break;
+
+		    }
+		}
+
+		// Inicio [formula_posicao]
+		function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+		  var R = 6371; // Radius of the earth in km
+		  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+		  var dLon = deg2rad(lon2-lon1); 
+		  var a = 
+		    Math.sin(dLat/2) * Math.sin(dLat/2) +
+		    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+		    Math.sin(dLon/2) * Math.sin(dLon/2)
+		    ; 
+		  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+		  var d = R * c; // Distance in km
+		  return d;
+		}
+
+		function deg2rad(deg) {
+		  return deg * (Math.PI/180)
+		}
+		// Fim [formula_posicao]
+
+		function renderiza_cliente(obj){
+
+			for(var a=0; a<obj.length; a++){	    			
+
+				var linha_cliente = '<span class="linha">';
+	    			linha_cliente += '<span class="label">'+obj[a].nome+'</span>';
+	    			linha_cliente += '<span class="desc">'+obj[a].uf+'</span>';
+	    			linha_cliente += '<span class="desc">'+obj[a].cidade+'</span>';
+	    			linha_cliente += '<span class="desc">'+obj[a].endereco+'</span>';	    			
+	    			linha_cliente += '<span class="extra">'+obj[a].km+'</span>';
+	    			linha_cliente += '</span>';	 
+
+	    		$('#linha_dados').append(linha_cliente);	    			
+
+	    	}
+
+		}
+
+    </script>
+</body>
+
+</html>
