@@ -334,12 +334,13 @@
 
 
 		tabelas: {
+			clientes: {arquivo: "clientes.txt", campos: ["id", "lat", "long", "endereco", "cidade", "uf"]},
 			pessoas: {arquivo: "pessoas.txt", campos: ["id", "nome", "idade", "cor"]},
 			animais: {arquivo: "animais.txt", campos: ["id", "nome", "fk_pessoa"]}
 		},
 
-		// Inicio [dbTabela]
-		dbTabela: function(options){
+		// Inicio [cdbTabela]
+		cdbTabela: function(options){
 			var opt = $.extend({
 				tabela: null,
 				find: function(obj){ return true; },
@@ -367,10 +368,34 @@
 
 			return true;
 		},
-		// Fim [dbTabela]
+		// Fim [cdbTabela]
 
-		// Inicio [dbFiltro]
-		dbFiltro: function(options){
+		// Inicio [cdbJoin]
+		cdbJoin: function(options){
+			var opt = $.extend({
+				tabela: null,
+				find: function(obj){ return true; },
+				ret: function(ind, obj){ return true; },
+				sucesso: function(obj){}
+			}, options);
+
+			var ret = [];
+
+			for(var a=0; a<opt.tabela.length; a++){
+				var temp = opt.ret(a, opt.tabela[a]);
+				if(temp){
+					ret.push( temp );
+				}
+			}
+
+			opt.sucesso(ret);
+
+			return true;
+		},
+		// Fim [cdbJoin]
+
+		// Inicio [cdbFiltro]
+		cdbFiltro: function(options){
 			var opt = $.extend({
 				tabela: null,
 				find: function(obj){ return true; },
@@ -389,10 +414,10 @@
 
 			return true;
 		},
-		// Fim [dbFiltro]
+		// Fim [cdbFiltro]
 
-		// Inicio [dbTxt]
-		dbTxt: function(options){
+		// Inicio [cdbTxt]
+		cdbTxt: function(options){
 			var opt = $.extend({
 				tabela: null,
 				nome: "",
@@ -426,7 +451,7 @@
 
 			}});
 		}
-		// Fim [dbTxt]
+		// Fim [cdbTxt]
 
 	};
 
