@@ -77,6 +77,7 @@
 			
 			<div class="botoes">
 				<a href="#" class="botao" onclick="return sincronizar();">Sincronizar conteúdo</a>
+				<a href="#" class="botao" onclick="return sincronizar_del();">Apagar conteúdo</a>
 			</div>
 
 			<br/>
@@ -170,13 +171,24 @@
     	}
 
 	    function sincronizar(){
+	    	pg.arquivoDownload({diretorio: "db", nome: "clientes.txt", url: "https://raw.githubusercontent.com/andredla/vero_demo/master/vero_demo/www/clientes.txt", sucesso: function(file){ noty({texto: "Sincronizado com sucesso.", classe: "noty_sucesso", gruda: false}); }});
+	    	return false;
+	    }
+
+	    function sincronizar_del(){
+	    	pg.arquivoDeleta({nome: "db/clientes.txt"});
+	    	noty({texto: "Arquivos apagados.", classe: "noty_sucesso", gruda: false});
+	    	return false;
+	    }
+
+	    function notifica(){
+	    	/*
 	    	bi.Alertas({tipo: "sucesso", texto: "Sincronizado com sucesso.", ok: "notifica();"});
 	    	bi.Alertas({tipo: "confirma", texto: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, neque."});
 	    	bi.Alertas({tipo: "erro", texto: "Lorem ipsum dolor sit amet."});
 	    	bi.Alertas({tipo: "aviso", texto: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, omnis!."});
-	    	return false;
-	    }
-	    function notifica(){
+	    	*/
+
 			noty({titulo: "Título", texto: "Conteúdo..."});
 			noty({titulo: "Aviso", texto: "Não foi possivel atualizar o banco...", classe: "noty_aviso"});
 			noty({titulo: "Erro", texto: "Aconteceu algum erro inesperado.", classe: "noty_erro"});
