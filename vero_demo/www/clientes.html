@@ -168,7 +168,7 @@
 
 		        default:
 		    		noty({texto: "Localização não encontrada, favor verifique se o GPS esta ativado.", classe: "noty_erro", gruda: false});
-		            //break;
+		            break;
 
 		    }
 		}
@@ -195,14 +195,17 @@
 
 		function renderiza_cliente(obj){
 
-			for(var a=0; a<obj.length; a++){	    			
+			for(var a=0; a<obj.length; a++){	
+
+				var km = obj[a].km;
+				km.toFixed(2);    			
 
 				var linha_cliente = '<span class="linha">';
 	    			linha_cliente += '<span class="label">'+obj[a].nome+'</span>';
 	    			linha_cliente += '<span class="desc">'+obj[a].uf+'</span>';
 	    			linha_cliente += '<span class="desc">'+obj[a].cidade+'</span>';
 	    			linha_cliente += '<span class="desc">'+obj[a].endereco+'</span>';	    			
-	    			linha_cliente += '<span class="extra">'+obj[a].km+'</span>';
+	    			linha_cliente += '<span class="extra">Dist&acirc;ncia: '+km+' km</span>';
 	    			linha_cliente += '</span>';	 
 
 	    		$('#linha_dados').append(linha_cliente);	    			
