@@ -176,8 +176,9 @@
 	    }
 
 	    function sincronizar_del(){
-	    	pg.arquivoDeleta({nome: "db/clientes.txt"});
-	    	noty({texto: "Arquivos apagados.", classe: "noty_sucesso", gruda: false});
+	    	pg.arquivoDeleta({nome: "db/clientes.txt", sucesso: function(){
+	    		noty({texto: "Arquivos apagados.", classe: "noty_sucesso", gruda: false});
+	    	}});
 	    	return false;
 	    }
 
