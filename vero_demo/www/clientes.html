@@ -117,7 +117,7 @@
 		   	lat_origem = position.coords.latitude;
 		    lon_origem = position.coords.longitude;	   
 
-		    noty({texto: mylocation, classe: "noty_sucesso", gruda: false});
+		    //noty({texto: mylocation, classe: "noty_sucesso", gruda: false});
 
 		    pg.cdbTabela({tabela: pg.tabelas.clientes, sucesso: function(obj){
     			for(var a=0; a<obj.length; a++){
@@ -192,7 +192,7 @@
 			for(var a=0; a<obj.length; a++){	    			
 
 				var linha_cliente = '<span class="linha">';
-	    			linha_cliente += '<span class="label">#nome</span>';
+	    			linha_cliente += '<span class="label">'+obj[a].nome+'</span>';
 	    			linha_cliente += '<span class="desc">'+obj[a].uf+'</span>';
 	    			linha_cliente += '<span class="desc">'+obj[a].cidade+'</span>';
 	    			linha_cliente += '<span class="desc">'+obj[a].endereco+'</span>';	    			
