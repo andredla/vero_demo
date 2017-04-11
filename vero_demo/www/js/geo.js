@@ -4,18 +4,18 @@ var out = document.getElementById("out");
 
 // Wait for PhoneGap to load
 //
-//document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("deviceready", onDeviceReady, false);
 
-document.addEventListener("deviceready",function() {
- cordova.dialogGPS("Your GPS is Disabled, this app needs to be enable to works.", "Use GPS, with wifi or 3G.", function(buttonIndex){
-              switch(buttonIndex) {
-                case 0: break;//cancel
-                case 1: break;//neutro option
-                case 2: break;//user go to configuration
-              }},
-              "Please Turn on GPS",//title
-              ["Cancel","Later","Go"]);//buttons
-  });
+//document.addEventListener("deviceready",function() {
+// cordova.dialogGPS("Your GPS is Disabled, this app needs to be enable to works.", "Use GPS, with wifi or 3G.", function(buttonIndex){
+//              switch(buttonIndex) {
+//                case 0: break;//cancel
+//                case 1: break;//neutro option
+//                case 2: break;//user go to configuration
+//              }},
+//              "Please Turn on GPS",//title
+//              ["Cancel","Later","Go"]);//buttons
+//  });
 
 // PhoneGap is ready
 //
@@ -71,10 +71,10 @@ function onError(error) {
     }
 }
 
-var db = null;
-document.addEventListener('deviceready', function() {
-  db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
-});
+//var db = null;
+//document.addEventListener('deviceready', function() {
+//  db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
+//});
 
 /* db.transaction(function(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
