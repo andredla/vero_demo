@@ -334,7 +334,7 @@
 
 
 		tabelas: {
-			clientes: {arquivo: "clientes.txt", campos: ["id", "lat", "long", "endereco", "cidade", "uf"]},
+			clientes: {arquivo: "db/clientes.txt", campos: ["id", "lat", "long", "endereco", "cidade", "uf"]},
 			pessoas: {arquivo: "pessoas.txt", campos: ["id", "nome", "idade", "cor"]},
 			animais: {arquivo: "animais.txt", campos: ["id", "nome", "fk_pessoa"]}
 		},
