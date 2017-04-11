@@ -1,4 +1,4 @@
-1;-22.897576;-43.179248;Rua Dom gerardo, 64;Rio de Janeiro;RJ
-2;-22.936632;-43.175738;Rua Senador Vergueiro, 130;Rio de Janeiro;RJ
-3;-22.903336;-43.186877;Avenida Presidente Vargas, 1200;Rio de Janeiro;RJ
-4;-23.0000663;-43.3457797;Av. das Americas, 3434;Rio de Janeiro;RJ
+1;-22.897576;-43.179248;Tecnologia XPTO Ltda,Rua Dom gerardo, 64;Rio de Janeiro;RJ
+2;-22.936632;-43.175738;Supermercado Merlin Ltda,Rua Senador Vergueiro, 130;Rio de Janeiro;RJ
+3;-22.903336;-43.186877;Industria Quimica de Sabao SA,Avenida Presidente Vargas, 1200;Rio de Janeiro;RJ
+4;-23.0000663;-43.3457797;Condominio Mario Henrique Simonsen,Av. das Americas, 3434;Rio de Janeiro;RJ
