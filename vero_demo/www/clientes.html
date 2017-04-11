@@ -70,6 +70,14 @@
 		<!-- Inicio [wrap] -->
 		<div class="wrap">
 
+			<br/>
+
+			<div class="botoes">
+				<a href="#" class="botao" onclick="return start();">Atualizar</a>
+			</div>
+
+			<br/>
+
 			<!-- Inicio [lista] -->
 			<div class="lista">
 
@@ -102,12 +110,21 @@
     	function onDeviceReady(){
     		//noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
 
-    		navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
+    		setTimeout(function(){
+    			start();
+    		}, 350);
     	}
+
+    	function start(){
+    		bi.LightboxExibe({lightbox: "load"});
+    		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    		return false;
+    	}
+
     	// onSuccess Geolocation
 		//
-		function onSuccess(position) {    
+		function onSuccess(position) { 
+			bi.LightboxEsconde();
 		    var mylocation = "";
 		    mylocation += "lat: " + position.coords.latitude +"<br>";
 		    mylocation += "lng: " + position.coords.longitude+"<br><br>"; 	
@@ -138,16 +155,13 @@
 
     		}});
 
-
-
-
-
 		}
 
 		// onError Callback receives a PositionError object
 		//
 		function onError(error) {
 		   // alert('4-procurando...');
+		   bi.LightboxEsconde();
 		    switch(error.code) {
 
 		        case error.PERMISSION_DENIED:
@@ -193,6 +207,7 @@
 		// Fim [formula_posicao]
 
 		function renderiza_cliente(obj){
+			$('#linha_dados').html("");
 
 			for(var a=0; a<obj.length; a++){	
 
