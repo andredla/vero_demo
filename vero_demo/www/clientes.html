@@ -153,6 +153,8 @@
 
 				renderiza_cliente(obj);
 
+    		}, erro: function(){
+	    		noty({texto: "Não foi possível ler o arquivo de clientes.", classe: "noty_erro", gruda: false});
     		}});
 
 		}
