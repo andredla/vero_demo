@@ -170,28 +170,103 @@
     	function onDeviceReady(){
     	}
 
+    	var stack = {};
+
 	    function sincronizar(){
 	    	bi.LightboxExibe({lightbox: "load"});
-	    	pg.arquivoDownload({diretorio: "db", nome: "clientes.txt", url: "https://raw.githubusercontent.com/andredla/vero_demo/master/vero_demo/www/clientes.txt", sucesso: function(file){
-	    		bi.LightboxEsconde();
-	    		noty({texto: "Sincronizado com sucesso.", classe: "noty_sucesso", gruda: false});
-	    	}, erro: function(){
-	    		bi.LightboxEsconde();
-	    		noty({texto: "Não foi possível realizar o download do arquivo de clientes.", classe: "noty_erro", gruda: false});	    		
-	    	}});
+	    	stack = {clientes: false, ofertas: false};
+
+	    	ofertas();
+	    	clientes();
+
 	    	return false;
 	    }
 
 	    function sincronizar_del(){
 	    	bi.LightboxExibe({lightbox: "load"});
-	    	pg.arquivoDeleta({nome: "db/clientes.txt", sucesso: function(){
-	    		bi.LightboxEsconde();
-	    		noty({texto: "Arquivos apagados.", classe: "noty_sucesso", gruda: false});
-	    	}, erro: function(){
-	    		bi.LightboxEsconde();
-	    		noty({texto: "Arquivo de clientes não foi encontrado ou não existe.", classe: "noty_erro", gruda: false});	 
-	    	}});
+	    	stack = {clientes: false, ofertas: false};
+
+	    	ofertas_del();
+	    	clientes_del();
+
 	    	return false;
+	    }
+
+	    function terminou(){
+	    	var flag = true;
+			$.each(stack, function(key, value){
+				if(value == false){
+					flag = false;
+					return false;
+				}
+			});
+			if(flag){
+				stack.ofertas = false;
+				bi.LightboxEsconde();
+				noty({texto: "O aplicativo terminou de sincronizar.", classe: "noty_sucesso", gruda: false});
+			}
+	    }
+
+	    function clientes(){
+	    	pg.arquivoDownload({diretorio: "db", nome: "clientes.txt", url: "https://raw.githubusercontent.com/andredla/vero_demo/master/vero_demo/www/clientes.txt", sucesso: function(file){
+	    		stack.clientes = true;
+	    		terminou();
+	    		//bi.LightboxEsconde();
+	    		//noty({texto: "Sincronizado com sucesso.", classe: "noty_sucesso", gruda: false});
+	    	}, erro: function(){
+	    		stack.clientes = true;
+	    		noty({texto: "Não foi possível realizar o download do arquivo de clientes.", classe: "noty_erro", gruda: true});	    		
+	    		terminou();	    		
+	    	}});
+	    }
+
+	    function clientes_del(){
+	    	pg.arquivoDeleta({nome: "db/clientes.txt", sucesso: function(){
+	    		stack.clientes = true;
+	    		terminou();
+	    	}, erro: function(){
+	    		stack.clientes = true;
+	    		noty({texto: "Arquivo de clientes não foi encontrado ou não existe.", classe: "noty_erro", gruda: true});	
+	    		terminou();
+	    	}});
+	    }
+
+	    function ofertas(){
+	    	pg.arquivoDownload({diretorio: "db", nome: "ofertas.txt", url: "https://raw.githubusercontent.com/andredla/vero_demo/master/vero_demo/www/ofertas.txt", sucesso: function(file){
+	    		pg.cdbTabela({tabela: pg.tabelas.ofertas, sucesso: function(obj){
+			    	pg.dbOpen();
+			    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS ofertas (id unique, nome, assinatura)", sucesso: function(obj){
+			    		//noty({texto: "entrei", gruda: false});
+			    		for(var a=0; a<obj.length; a++){
+			    			pg.dbExecute({query: "INSERT INTO ofertas (id, nome, assinatura) VALUES ('"+obj.id+"', '"+obj.nome+"', '"+obj.assinatura+"')"});
+			    		}
+			    		stack.ofertas = true;
+			    		terminou();
+			    	}});
+	    		}});
+
+	    	}, erro: function(){
+	    		stack.ofertas = true;
+	    		noty({texto: "Não foi possível realizar o download do arquivo de ofertas.", classe: "noty_erro", gruda: true});	    		
+	    		terminou();
+	    	}});
+	    }
+
+	    function ofertas_del(){
+	    	pg.arquivoDeleta({nome: "db/ofertas.txt", sucesso: function(){
+	    		pg.dbOpen();
+	    		pg.dbExecute({query: "DROP TABLE IF EXISTS ofertas", sucesso(){
+	    			stack.ofertas = true;
+	    			terminou();
+	    		}, erro: function(){
+	    			stack.ofertas = true;
+	    			terminou();
+	    		}});
+	    	}, erro: function(){
+	    		stack.ofertas = true;
+	    		noty({texto: "Arquivo de ofertas não foi encontrado ou não existe.", classe: "noty_erro", gruda: true});	
+	    		terminou();
+	    	}});
 	    }
 
 	    function notifica(){
