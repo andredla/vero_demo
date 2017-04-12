@@ -85,8 +85,8 @@
 			<!-- Inicio [lista] -->
 			<div class="lista lista_d">
 				<span class="titulo">Resumo do pedido</span>
-				<span class="linha" onclick="return ofertas();">
-					<span class="label">Ofertas - clique para visualizar</span>
+				<span class="linha" onclick="return pedido_res();">
+					<span class="label">Pedido - clique para visualizar</span>
 					<span class="seta"></span>
 				</span>
 
@@ -145,12 +145,15 @@
 			document.addEventListener("deviceready",onDeviceReady,false);
 		}
 
-		var ofertas, pedido, join;
     	function onDeviceReady(){
     		setTimeout(function(){
     			start();
     		}, 350);
     	}
+
+		var ofertas = [];
+		var pedido = [];
+		var join = [];
 
     	function start(){
     		bi.LightboxExibe({lightbox: "load"});
@@ -158,6 +161,7 @@
 
     		pg.dbExecute({query: "SELECT * FROM ofertas", sucesso: function(q, rs){
     			for(var a=0; a<rs.rows.length; a++){
+    				//noty({texto: rs.rows.item(a).nome, gruda: false});
 	    			ofertas.push( {id: rs.rows.item(a).id, nome: rs.rows.item(a).nome, assinatura: rs.rows.item(a).assinatura} );
     			}
 
@@ -175,6 +179,8 @@
 	    					}
 	    				}
 	    				return false;
+	    			}, sucesso: function(obj){
+	    				join = obj;
 	    			}});
 
 	    			bi.LightboxEsconde();
@@ -189,14 +195,29 @@
     		}});
     	}
 
-    	function ofertas(){
-    		var linha = "<span class='linha'><span class='label'>"+dado+"</span></span>";
-    		for(var a=0; a<ofertas.length; a++){
+    	function pedido_res(){
+    		$("#lightbox .head .txt").html("Pedido");
+    		$("#lightbox .conteudo").html("<span class='lista' style='margin: 10px;'><span class='titulo'>Lista Pedido</span><span class='aqui'></span></span>");
+    		for(var a=0; a<join.length; a++){
+    			//noty({texto: join[a].nome, gruda: false});
+    			var linha = "<span class='linha'>"+
+    			"<span class='label'>id: "+join[a].id+"</span>"+
+    			"<span class='desc'>nome oferta: "+join[a].nome+"</span>"+
+    			"<span class='desc'>valor assinatura: "+join[a].valor_assinatura+"</span>"+
+    			"</span>";
 
+    			for(var b=0; b<5; b++){
+    				$("#lightbox .conteudo .aqui").append(linha);
+    			}
+    			$("#lightbox .conteudo .aqui").append(linha);
     		}
+    		lightbox();
+    		return false;
     	}
 
     	function lightbox(){
+    		var h = bi.GetTelaAltura();
+    		$(".lightbox .conteudo").css({"max-height": parseInt(h-h/5)});
     		bi.LightboxExibe({lightbox: "lightbox"});
     		$(".lightbox").addClass("animated slideInRight").bind("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){
     			$(this).removeClass("animated slideInRight");
