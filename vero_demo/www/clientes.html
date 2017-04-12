@@ -118,11 +118,12 @@
 
     	//var tm;
     	function start(){
-    		//tm = setTimeout(function(){
+    		/*
+    		tm = setTimeout(function(){
     			bi.LightboxEsconde();
     			noty({texto: "Localização não encontrada, por favor verifique se o GPS está ativado e tente novamente.", classe: "noty_aviso", gruda: false});
     		}, 6000);
-
+			*/
     		bi.LightboxExibe({lightbox: "load"});
     		navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 5000, maximumAge: 0});
     		return false;
@@ -131,7 +132,7 @@
     	// onSuccess Geolocation
 		//
 		function onSuccess(position){
-			clearTimeout(tm);
+			//clearTimeout(tm);
 			bi.LightboxEsconde();
 		    var mylocation = "";
 		    mylocation += "lat: " + position.coords.latitude +"<br>";
