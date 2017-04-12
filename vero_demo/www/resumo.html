@@ -85,7 +85,7 @@
 			<!-- Inicio [lista] -->
 			<div class="lista lista_d">
 				<span class="titulo">Resumo do pedido</span>
-				<span class="linha">
+				<span class="linha" onclick="return ofertas();">
 					<span class="label">Ofertas - clique para visualizar</span>
 					<span class="seta"></span>
 				</span>
@@ -145,7 +145,55 @@
 			document.addEventListener("deviceready",onDeviceReady,false);
 		}
 
+		var ofertas, pedido, join;
     	function onDeviceReady(){
+    		setTimeout(function(){
+    			start();
+    		}, 350);
+    	}
+
+    	function start(){
+    		bi.LightboxExibe({lightbox: "load"});
+    		pg.dbOpen();
+
+    		pg.dbExecute({query: "SELECT * FROM ofertas", sucesso: function(q, rs){
+    			for(var a=0; a<rs.rows.length; a++){
+	    			ofertas.push( {id: rs.rows.item(a).id, nome: rs.rows.item(a).nome, assinatura: rs.rows.item(a).assinatura} );
+    			}
+
+	    		pg.dbExecute({query: "SELECT * FROM pedido", sucesso: function(q, rs){
+	    			for(var a=0; a<rs.rows.length; a++){
+		    			pedido.push( {id: rs.rows.item(a).id, fk_oferta: rs.rows.item(a).fk_oferta, valor_assinatura: rs.rows.item(a).valor_assinatura} );
+	    			}
+
+	    			pg.cdbJoin({tabela: pedido, ret: function(ind, obj){
+	    				for(var a=0; a<ofertas.length; a++){
+	    					if(obj.fk_oferta == ofertas[a].id){
+	    						var ret = {id: ofertas[a].id, nome: ofertas[a].nome, valor_assinatura: obj.valor_assinatura};
+	    						return ret;
+	    						break;
+	    					}
+	    				}
+	    				return false;
+	    			}});
+
+	    			bi.LightboxEsconde();
+
+	    		}, erro: function(q, erro){
+	    			bi.LightboxEsconde();
+	    			noty({texto: q + " erro : " + erro.message, classe: "noty_erro", gruda: false});
+	    		}});
+    		}, erro: function(q, erro){
+    			bi.LightboxEsconde();
+    			noty({texto: q + " erro : " + erro.message, classe: "noty_erro", gruda: false});
+    		}});
+    	}
+
+    	function ofertas(){
+    		var linha = "<span class='linha'><span class='label'>"+dado+"</span></span>";
+    		for(var a=0; a<ofertas.length; a++){
+
+    		}
     	}
 
     	function lightbox(){
