@@ -321,11 +321,12 @@
 			var opt = $.extend({
 				query: "",
 				sucesso: function(q, rs){},
-				erro: function(q, erro){ noty({texto: opt.query + " erro : " + erro.code, classe: "noty_erro", gruda: false}); }
+				erro: function(q, erro){ noty({texto: q + " erro : " + erro.message, classe: "noty_erro", gruda: false}); },
+				obj_erro: function(q, erro){ opt.erro(opt.query, erro); }
 			}, options);
 
 			pg.db.transaction(function(q){
-				q.executeSql(opt.query, [], opt.sucesso, opt.erro);
+				q.executeSql(opt.query, [], opt.sucesso, opt.obj_erro);
 			}, opt.erro);
 
 			return true;
@@ -335,6 +336,7 @@
 
 		tabelas: {
 			clientes: {arquivo: "db/clientes.txt", campos: ["id", "lat", "lon", "nome", "endereco", "cidade", "uf"]},
+			ofertas: {arquivo: "db/ofertas", campos: ["id", "nome", "assinatura"]},
 			pessoas: {arquivo: "pessoas.txt", campos: ["id", "nome", "idade", "cor"]},
 			animais: {arquivo: "animais.txt", campos: ["id", "nome", "fk_pessoa"]}
 		},
