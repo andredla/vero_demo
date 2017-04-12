@@ -22,3 +22,23 @@
 21;-22.9864222;-43.2033309;Gabbiano Al Mare;Avenida Vieira Souto, 320 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
 22;-22.9822519;-43.20473969999999;Restô Ipanema;Rua Joana Angélica, 184 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
 23;-22.985298;-43.196801;Brasileirinho;Rua Jangadeiros, 10 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+24;-22.999551;-43.348553;D.O.C Ristorante & Grand Cru Wine Store;Le Monde 3500 Bloco 3 Loja A - Avenida das Américas - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+25;-23.0008;-43.3427;Restaurante Família Gagliasso;Av. das Americas 3255 loja 144;Rio de Janeiro;RJ
+26;-22.9994617;-43.3440223;Pier Dreck Restaurante;Avenida das Américas, 3120 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+27;-22.9983578;-43.3511549;Restaurante Benedictine;Avenida das Américas, 4666, Rio de Janeiro;Rio de Janeiro;RJ
+28;-23.0034183;-43.33960829999999;Restaurante Bandeja Dourada;Condomínio Riviera de Fiori - Avenida Prefeito Dulcídio Cardoso, 2500 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+29;-22.997365;-43.351192;Pobre Juan - Parrilla Premium;Shopping VillageMall Terraço, Avenida das Américas, 3900 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+30;-22.9981759;-43.3514829;Viena;Barra Shopping - Avenida das Américas, 4666 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+31;-23.0008457;-43.3428179;Gabbiano;Shopping Barra Garden - Avenida das Américas, 3255 - Loja 142 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+32;-22.998115;-43.3512726;Capim Santo Rio de Janeiro;Av. das Américas, 3900 - Shopping Village Mall 3 piso - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+33;-22.9977077;-43.35109730000001;Quadrifoglio;Avenida das Américas, 3900 - 304 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+34;-22.9976208;-43.3511486;CT Brasserie Claude Troisgros;Village Mall - Avenida das Américas, 3900 - Loja 303 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+35;-23.0018545;-43.3493994;Sano;Barra Square Shopping Center - Avenida das Américas, 3555 - Loja 215 Bloco 2 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+36;-22.9974965;-43.3511599;Naga;Shopping Village Mall - Avenida das Américas, 3900 - Loja 302 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+37;-23.0009831;-43.3427236;Estação Saúde;Avenida das Américas, 3255 - 110/111/112 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+38;-22.9993561;-43.3456078;Eclético;Avenida João de Cabral de Mello Neto, 400 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+39;-22.9994012;-43.3487037;Pappa Jack - Centro Empresarial Le Monde;Avenida das Américas, 3500 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+40;-22.9976062;-43.35154229999999;The Fifties;Avenida das Américas, 3900 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+41;-23.0026989;-43.3499536;Konomi Ai;Avenida Marechal Henrique Lott, 120 - Loja 120 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+42;-23.0025063;-43.35046320000001;Rei dos Assados;Avenida Marechal Henrique Lott, 120 - Loja 104/105/106 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+43;-23.0027979;-43.3501035;Los Frick;Rosa Shopping - Avenida Marechal Henrique Lott, 120 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
