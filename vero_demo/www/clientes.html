@@ -121,10 +121,10 @@
     		tm = setTimeout(function(){
     			bi.LightboxEsconde();
     			noty({texto: "Localização não encontrada, por favor verifique se o GPS está ativado e tente novamente.", classe: "noty_aviso", gruda: false});
-    		}, 5000);
+    		}, 6000);
 
     		bi.LightboxExibe({lightbox: "load"});
-    		navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 3000, maximumAge: 0});
+    		navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 5000, maximumAge: 0});
     		return false;
     	}
 
