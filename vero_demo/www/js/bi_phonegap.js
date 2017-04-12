@@ -344,7 +344,8 @@
 			var opt = $.extend({
 				tabela: null,
 				find: function(obj){ return true; },
-				sucesso: function(obj){}
+				sucesso: function(obj){},
+				erro: function(){ noty({texto: "Não foi possível ler  o arquivo.", classe: "noty_erro", gruda: false}); }
 			}, options);
 
 			var ret = [];
@@ -364,7 +365,7 @@
 					}
 				}
 				opt.sucesso(ret);
-			}});
+			}, erro: opt.erro});
 
 			return true;
 		},
