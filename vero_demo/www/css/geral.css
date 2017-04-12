@@ -38,6 +38,9 @@ html, body {height: auto !important; background-color: #4E8AC9;}
 .lightbox .head .txt {position: relative; display: block; padding: 10px; margin-right: 20px;}
 .lightbox .fechar {position: absolute; display: inline-block; right: 10px; top: 50%; margin-top: -10px; padding: 10px;}
 .lightbox .conteudo {position: relative; display: block; padding: 5px;}
+
+/*.lightbox {max-height: 90%; overflow-y: scroll; -webkit-overflow-scrolling: touch;}*/
+.lightbox .conteudo {position: relative; overflow-y: scroll; -webkit-overflow-scrolling: touch;}
 /* Fim [lightbox] */
 
 /* Inicio [tabela] */
