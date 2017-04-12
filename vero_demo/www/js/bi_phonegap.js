@@ -130,7 +130,7 @@
 			var opt = $.extend({
 				caminho: cordova.file.dataDirectory,
 				nome: "",
-				sucesso: function(){},
+				sucesso: function(){ noty({texto: "Arquivo apagado com sucesso", classe: "noty_sucesso", gruda: false}); },
 				erro: function(err){ noty({texto: "Não foi possivel excluir o arquivo.", classe: "noty_erro", gruda: false}); }
 			}, options);
 
