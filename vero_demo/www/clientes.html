@@ -116,9 +116,9 @@
     		}, 350);
     	}
 
-    	var tm;
+    	//var tm;
     	function start(){
-    		tm = setTimeout(function(){
+    		//tm = setTimeout(function(){
     			bi.LightboxEsconde();
     			noty({texto: "Localização não encontrada, por favor verifique se o GPS está ativado e tente novamente.", classe: "noty_aviso", gruda: false});
     		}, 6000);
@@ -171,7 +171,7 @@
 		//
 		function onError(error) {
 		   // alert('4-procurando...');
-		   clearTimeout(tm);
+		   //clearTimeout(tm);
 		   bi.LightboxEsconde();
 		    switch(error.code) {
 
@@ -184,7 +184,8 @@
 		            break;
 		        case error.TIMEOUT:
 		            //output.innerHTML ="Request Timed out, please try again";		            
-		            noty({texto: "Tempo excedido, favor tente novamente.", classe: "noty_erro", gruda: false});
+		            //noty({texto: "Tempo excedido, favor tente novamente.", classe: "noty_erro", gruda: false});
+		            noty({texto: "Tempo excedido, favor verifique se o GPS esta ativo. Tente novamente.", classe: "noty_erro", gruda: false});
 		            break;
 		        case error.UNKNOWN_ERROR:
 		           // output.innerHTML="Unknown Error please try again";		            
