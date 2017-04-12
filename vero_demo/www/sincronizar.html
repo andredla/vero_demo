@@ -171,13 +171,25 @@
     	}
 
 	    function sincronizar(){
-	    	pg.arquivoDownload({diretorio: "db", nome: "clientes.txt", url: "https://raw.githubusercontent.com/andredla/vero_demo/master/vero_demo/www/clientes.txt", sucesso: function(file){ noty({texto: "Sincronizado com sucesso.", classe: "noty_sucesso", gruda: false}); }});
+	    	bi.LightboxExibe({lightbox: "load"});
+	    	pg.arquivoDownload({diretorio: "db", nome: "clientes.txt", url: "https://raw.githubusercontent.com/andredla/vero_demo/master/vero_demo/www/clientes.txt", sucesso: function(file){
+	    		bi.LightboxEsconde();
+	    		noty({texto: "Sincronizado com sucesso.", classe: "noty_sucesso", gruda: false});
+	    	}, erro: function(){
+	    		bi.LightboxEsconde();
+	    		noty({texto: "Não foi possível realizar o download do arquivo de clientes.", classe: "noty_erro", gruda: false});	    		
+	    	}});
 	    	return false;
 	    }
 
 	    function sincronizar_del(){
+	    	bi.LightboxExibe({lightbox: "load"});
 	    	pg.arquivoDeleta({nome: "db/clientes.txt", sucesso: function(){
+	    		bi.LightboxEsconde();
 	    		noty({texto: "Arquivos apagados.", classe: "noty_sucesso", gruda: false});
+	    	}, erro: function(){
+	    		bi.LightboxEsconde();
+	    		noty({texto: "Arquivo de clientes não foi encontrado ou não existe.", classe: "noty_erro", gruda: false});	 
 	    	}});
 	    	return false;
 	    }
