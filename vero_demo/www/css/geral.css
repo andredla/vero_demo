@@ -32,6 +32,14 @@ html, body {height: auto !important; background-color: #4E8AC9;}
 .scroll {max-height: 200px; -webkit-overflow-scrolling: touch;}
 /* Fim [pagina] */
 
+/* Inicio [lightbox] */
+.lightbox {position: absolute; display: block; width: 90%; font-size: 18px; font-family: Verdana; background-color: #ffffff; border: 1px solid; z-index: 998;}
+.lightbox .head {position: relative; display: block;}
+.lightbox .head .txt {position: relative; display: block; padding: 10px; margin-right: 20px;}
+.lightbox .fechar {position: absolute; display: inline-block; right: 10px; top: 50%; margin-top: -10px; padding: 10px;}
+.lightbox .conteudo {position: relative; display: block; padding: 5px;}
+/* Fim [lightbox] */
+
 /* Inicio [tabela] */
 .tabela {position: relative; width: 100%; font-size: 18px; border-collapse: collapse;}
 .tabela .t_head {position: relative; text-align: center;}
@@ -200,4 +208,5 @@ background: linear-gradient(#FF7378, #F25056);
 	.menu_mob {display: block;}
 	.wrap {width: 100%;}
 	.div_alerta {width: 90%;}
+	.lightbox {width: 90%;}
 }
