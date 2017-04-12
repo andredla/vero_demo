@@ -107,27 +107,22 @@
 			app.initialize();
 			document.addEventListener("deviceready",onDeviceReady,false);
 		}
-
     	function onDeviceReady(){
     		//noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
-
     		setTimeout(function(){
     			start();
     		}, 350);
     	}
-
     	var tm;
     	function start(){
     		tm = setTimeout(function(){
     			bi.LightboxEsconde();
     			noty({texto: "Localização não encontrada, por favor verifique se o GPS está ativado e tente novamente.", classe: "noty_aviso", gruda: false});
-    		}, 2000);
-
+    		}, 4000);
     		bi.LightboxExibe({lightbox: "load"});
     		navigator.geolocation.getCurrentPosition(onSuccess, onError);
     		return false;
     	}
-
     	// onSuccess Geolocation
 		//
 		function onSuccess(position){
@@ -136,37 +131,27 @@
 		    var mylocation = "";
 		    mylocation += "lat: " + position.coords.latitude +"<br>";
 		    mylocation += "lng: " + position.coords.longitude+"<br><br>"; 	
-
 		    var lat_origem="";
 		    var lon_origem="";
 		   	lat_origem = position.coords.latitude;
 		    lon_origem = position.coords.longitude;	   
-
 		    //noty({texto: mylocation, classe: "noty_sucesso", gruda: false});
-
 		    pg.cdbTabela({tabela: pg.tabelas.clientes, sucesso: function(obj){
     			for(var a=0; a<obj.length; a++){
-
     				var km = getDistanceFromLatLonInKm(lat_origem,lon_origem,obj[a].lat,obj[a].lon);
-
     				obj[a].km = km;
 	    			//noty({texto: obj[a].id + ":" + obj[a].endereco + ' - km ' + km, gruda: false});					
     			}
-
     			obj.sort(function(a, b){
 				    var a1= a.km, b1= b.km;
 				    if(a1== b1) return 0;
 				    return a1> b1? 1: -1;
 				});
-
 				renderiza_cliente(obj);
-
     		}, erro: function(){
 	    		noty({texto: "Não foi possível ler o arquivo de clientes.", classe: "noty_erro", gruda: false});
     		}});
-
 		}
-
 		// onError Callback receives a PositionError object
 		//
 		function onError(error) {
@@ -174,7 +159,6 @@
 		   clearTimeout(tm);
 		   bi.LightboxEsconde();
 		    switch(error.code) {
-
 		        case error.PERMISSION_DENIED:
 		            noty({texto: "Permissão não concedida, favor ativar GPS e tente novamente", classe: "noty_erro", gruda: false});
 		            break;
@@ -193,10 +177,8 @@
 		        default:
 		    		noty({texto: "Localização não encontrada, favor verifique se o GPS está ativado.", classe: "noty_erro", gruda: false});
 		            break;
-
 		    }
 		}
-
 		// Inicio [formula_posicao]
 		function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 		  var R = 6371; // Radius of the earth in km
@@ -211,20 +193,15 @@
 		  var d = R * c; // Distance in km
 		  return d;
 		}
-
 		function deg2rad(deg) {
 		  return deg * (Math.PI/180)
 		}
 		// Fim [formula_posicao]
-
 		function renderiza_cliente(obj){
 			$('#linha_dados').html("");
-
 			for(var a=0; a<obj.length; a++){	
-
 				var km = obj[a].km;
 				km = km.toFixed(2);    			
-
 				var linha_cliente = '<span class="linha">';
 	    			linha_cliente += '<span class="label">'+obj[a].nome+'</span>';
 	    			linha_cliente += '<span class="desc">'+obj[a].uf+'</span>';
@@ -232,13 +209,9 @@
 	    			linha_cliente += '<span class="desc">'+obj[a].endereco+'</span>';	    			
 	    			linha_cliente += '<span class="extra">Dist&acirc;ncia: '+km+' km</span>';
 	    			linha_cliente += '</span>';	 
-
 	    		$('#linha_dados').append(linha_cliente);	    			
-
 	    	}
-
 		}
-
     </script>
 </body>
 
