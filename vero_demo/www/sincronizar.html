@@ -174,9 +174,10 @@
 
 	    function sincronizar(){
 	    	bi.LightboxExibe({lightbox: "load"});
-	    	stack = {clientes: false, ofertas: false};
+	    	stack = {clientes: false, ofertas: false, pedido: false};
 
 	    	ofertas();
+	    	pedido();
 	    	clientes();
 
 	    	return false;
@@ -184,9 +185,10 @@
 
 	    function sincronizar_del(){
 	    	bi.LightboxExibe({lightbox: "load"});
-	    	stack = {clientes: false, ofertas: false};
+	    	stack = {clientes: false, ofertas: false, pedido: false};
 
 	    	ofertas_del();
+	    	pedido_del();
 	    	clientes_del();
 
 	    	return false;
@@ -235,13 +237,15 @@
 	    	pg.arquivoDownload({diretorio: "db", nome: "ofertas.txt", url: "https://raw.githubusercontent.com/andredla/vero_demo/master/vero_demo/www/ofertas.txt", sucesso: function(file){
 	    		pg.cdbTabela({tabela: pg.tabelas.ofertas, sucesso: function(obj){
 			    	pg.dbOpen();
-			    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS ofertas (id unique, nome, assinatura)", sucesso: function(obj){
-			    		//noty({texto: "entrei", gruda: false});
-			    		for(var a=0; a<obj.length; a++){
-			    			pg.dbExecute({query: "INSERT INTO ofertas (id, nome, assinatura) VALUES ('"+obj.id+"', '"+obj.nome+"', '"+obj.assinatura+"')"});
-			    		}
-			    		stack.ofertas = true;
-			    		terminou();
+			    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS ofertas (id unique, nome, assinatura)", sucesso: function(){
+			    		pg.dbExecute({query: "DELETE FROM ofertas", sucesso: function(){
+				    		for(var a=0; a<obj.length; a++){
+				    			//noty({texto: obj[a].nome, gruda: false});
+				    			pg.dbExecute({query: "INSERT INTO ofertas (id, nome, assinatura) VALUES ('"+obj[a].id+"', '"+obj[a].nome+"', '"+obj[a].assinatura+"')"});
+				    		}
+				    		stack.ofertas = true;
+				    		terminou();
+			    		}});
 			    	}});
 	    		}});
 
@@ -265,6 +269,24 @@
 	    	}, erro: function(){
 	    		stack.ofertas = true;
 	    		noty({texto: "Arquivo de ofertas não foi encontrado ou não existe.", classe: "noty_erro", gruda: true});	
+	    		terminou();
+	    	}});
+	    }
+
+	    function pedido(){
+	    	pg.dbOpen();
+	    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS pedido (id unique, fk_oferta, valor_assinatura)", sucesso: function(){
+	    		pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura) VALUES ('1', '1', 'R$ 10,50')"});
+	    		pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura) VALUES ('2', '2', 'R$ 10,50')"});
+	    		stack.pedido = true;
+	    		terminou();
+	    	}});
+	    }
+
+	    function pedido_del(){
+	    	pg.dbOpen();
+	    	pg.dbExecute({query: "DROP TABLE IF EXISTS pedido", sucesso: function(){
+	    		stack.pedido = true;
 	    		terminou();
 	    	}});
 	    }
