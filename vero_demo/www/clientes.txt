@@ -2,3 +2,23 @@
 2;-22.936632;-43.175738;Supermercado Merlin Ltda;Rua Senador Vergueiro, 130;Rio de Janeiro;RJ
 3;-22.903336;-43.186877;Industria Quimica de Sabao SA;Avenida Presidente Vargas, 1200;Rio de Janeiro;RJ
 4;-23.0000663;-43.3457797;Condominio Mario Henrique Simonsen;Av. das Americas, 3434;Rio de Janeiro;RJ
+4;-22.985429;-43.2006719;Restaurante Rayz;Rua Prudente de Morais, 416 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+5;-22.9859251;-43.2007015;Opium;Rua Farme de Amoedo, 34 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+6;-22.9828746;-43.2028586;Papa Fina Restaurante;Rua Vinícius de Moraes, 153 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+7;-22.984767;-43.199786;Aipo & Aipim Restaurante;Rua Visconde de Pirajá, 145 - Ipanema;Rio de Janeiro;RJ
+8;-22.9836511;-43.2007899;Rio Sushi;Rua Farme de Amoedo, 87 - Loja A - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+9;-22.9843672;-43.19953659999999;Azteka Culinária Mexicana;Rua Visconde de Pirajá, 156 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+10;-22.9850432;-43.2009458;Rota 66;Rua Farme de Amoedo, 47 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+11;-22.984576;-43.19622369999999;Via 44 Ristorante;Rua Visconde de Pirajá, 44 B - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+12;-22.9828521;-43.2077436;Gula Gula Ipanema;Rua Barão da Torre, 446 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+13;-22.9829586;-43.20834809999999;Manekineko;Rua Barão da Torre, 472 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+14;-22.9864714;-43.200742;Eleven Rio;Avenida Vieira Souto, 234 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+15;-22.9854096;-43.2049527;Zazá Bistrô - Ipanema;Rua Joana Angélica, 40 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+16;-22.9855124;-43.20731709999999;Quitéria;Rua Maria Quitéria, 27 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+17;-22.9831611;-43.2015976;Satyricon;Rua Barão da Torre, 192 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+18;-22.9852632;-43.2030103;Garota de Ipanema;Rua Vinícius de Moraes, 49 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+19;-22.9810197;-43.2067676;Rancho Português;Rua Maria Quitéria, 136 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+20;-22.985181;-43.196735;Fazendola;Rua Jangadeiros, 14 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+21;-22.9864222;-43.2033309;Gabbiano Al Mare;Avenida Vieira Souto, 320 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+22;-22.9822519;-43.20473969999999;Restô Ipanema;Rua Joana Angélica, 184 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+23;-22.985298;-43.196801;Brasileirinho;Rua Jangadeiros, 10 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
