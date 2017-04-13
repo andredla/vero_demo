@@ -82,66 +82,22 @@
 
 			<br/>
 
-			<span class="texto">Lista sincornizada:</span>
-
-			<!-- Inicio [tabela] -->
-			<table class="tabela" cellpadding="0" cellspacing="0">
-				<tr class="t_head">
-					<td>Nome</td>
-					<td>Latitude</td>
-					<td>Longitude</td>
-					<td>Endereço</td>
-					<td>Bairro</td>
-				</tr>
-
-				<tr>
-					<td>Fulano de Tal</td>
-					<td>143.094509</td>
-					<td>143.234583</td>
-					<td>Rua sei lá do que</td>
-					<td>Ipanema</td>
-				</tr>
-			</table>
-			<!-- Fim [tabela] -->
-			
-			<br/>
-
 			<!-- Inicio [lista] -->
 			<div class="lista">
-				<span class="titulo">Fulano de Tal:</span>
-				<span class="linha">
-					<span class="label">Latitude</span>
-					<span class="desc">143.094509</span>
+				<span class="titulo">Histórico de sincronização (<span id="tempo"></span>)</span>
+				<span class="linha" id="lista_ofertas">
+					<span class="label">Ofertas</span>
+					<span class="desc"></span>
 				</span>
 
-				<span class="linha">
-					<span class="label">Longitude</span>
-					<span class="desc">143.234583</span>
+				<span class="linha" id="lista_pedido">
+					<span class="label">Pedido</span>
+					<span class="desc"></span>
 				</span>
 
-				<span class="linha">
-					<span class="label">Endereço</span>
-					<span class="desc">Rua sei lá do que</span>
-				</span>
-
-				<span class="linha">
-					<span class="label">Bairro</span>
-					<span class="desc">Ipanema</span>
-				</span>
-			</div>
-			<!-- Fim [lista] -->
-
-			<br/>
-
-			<!-- Inicio [lista] -->
-			<div class="lista">
-				<span class="titulo">Lista sincronizada:</span>
-				<span class="linha">
-					<span class="label">Nome: <b>Fulano de tal</b></span>
-					<span class="desc">Longitude: <b>143.094509</b></span>
-					<span class="desc">Latitude: <b>143.234583</b></span>
-					<span class="desc">Endereço: <b>Rua sei lá do que</b></span>
-					<span class="desc">Bairro: <b>Ipanema</b></span>
+				<span class="linha" id="lista_clientes">
+					<span class="label">Clientes</span>
+					<span class="desc"></span>
 				</span>
 			</div>
 			<!-- Fim [lista] -->
@@ -168,13 +124,62 @@
     	}
 
     	function onDeviceReady(){
+    		setTimeout(function(){
+    			start();
+    		}, 350);
     	}
 
-    	var stack = {};
+		var stack = {};
+
+		function date(){
+   			var dt = new Date();
+   			var dia = ('0' + dt.getUTCDate()).slice(-2); 
+   			var mes = ('0' + (dt.getUTCMonth()+1)).slice(-2); 
+   			var ano = dt.getUTCFullYear();
+   			var ret = dia + "/" + mes + "/" + ano;
+   			return ret;
+		}
+
+    	function start(){
+    		bi.LightboxExibe({lightbox: "load"});
+    		pg.configLer({nome: "sincronizar.txt", callback: function(dict){
+    			//noty({texto: dict["token"], gruda: false});
+    			$("#tempo").html(dict.tempo);
+    			stack = {clientes: {erro: dict.clientes}, ofertas: {erro: dict.ofertas}, pedido: {erro: dict.pedido}};
+    			lista_resposta();
+    			noty({texto: "Histórico de sincronização carregado.", classe: "noty_aviso", gruda: false});
+    			bi.LightboxEsconde();
+    		}, erro: function(){
+    			bi.LightboxEsconde();
+    		}});
+    	}
+
+    	function lista_reset(){
+    		var oferta = $("#lista_ofertas");
+    		var pedido = $("#lista_pedido");
+    		var clientes = $("#lista_clientes");
+
+    		oferta.find(".desc").attr({class: "desc"}).html("Sincronizando...");
+    		pedido.find(".desc").attr({class: "desc"}).html("Sincronizando...");
+    		clientes.find(".desc").attr({class: "desc"}).html("Sincronizando...");
+    	}
+
+    	function lista_resposta(){
+			$.each(stack, function(key, value){
+				if(value.erro != ""){
+					$("#lista_"+key).find(".desc").addClass("erro").html(value.erro);
+				}else{
+					$("#lista_"+key).find(".desc").addClass("sucesso").html("Sincronizado");
+				}
+			});
+    	}
 
 	    function sincronizar(){
 	    	bi.LightboxExibe({lightbox: "load"});
-	    	stack = {clientes: false, ofertas: false, pedido: false};
+	    	//stack = {clientes: false, ofertas: false, pedido: false};
+	    	stack = {clientes: {status: false, erro: ""}, ofertas: {status: false, erro: ""}, pedido: {status: false, erro: ""}};
+
+	    	lista_reset();
 
 	    	ofertas();
 	    	pedido();
@@ -185,7 +190,8 @@
 
 	    function sincronizar_del(){
 	    	bi.LightboxExibe({lightbox: "load"});
-	    	stack = {clientes: false, ofertas: false, pedido: false};
+	    	//stack = {clientes: false, ofertas: false, pedido: false};
+	    	stack = {clientes: {status: false, erro: ""}, ofertas: {status: false, erro: ""}, pedido: {status: false, erro: ""}};
 
 	    	ofertas_del();
 	    	pedido_del();
@@ -197,13 +203,17 @@
 	    function terminou(){
 	    	var flag = true;
 			$.each(stack, function(key, value){
-				if(value == false){
+				if(value.status == false){
 					flag = false;
 					return false;
 				}
 			});
 			if(flag){
-				stack.ofertas = false;
+				stack.ofertas.status = false;
+				lista_resposta();
+				var dict = {ofertas: stack.ofertas.erro, pedido: stack.pedido.erro, clientes: stack.clientes.erro, tempo: date()};
+				pg.configEscreve({nome: "sincronizar.txt", dict: dict});
+				$("#tempo").html(dict.tempo);
 				bi.LightboxEsconde();
 				noty({texto: "O aplicativo terminou de sincronizar.", classe: "noty_sucesso", gruda: false});
 			}
@@ -211,12 +221,13 @@
 
 	    function clientes(){
 	    	pg.arquivoDownload({diretorio: "db", nome: "clientes.txt", url: "https://raw.githubusercontent.com/andredla/vero_demo/master/vero_demo/www/clientes.txt", sucesso: function(file){
-	    		stack.clientes = true;
+	    		stack.clientes.status = true;
 	    		terminou();
 	    		//bi.LightboxEsconde();
 	    		//noty({texto: "Sincronizado com sucesso.", classe: "noty_sucesso", gruda: false});
 	    	}, erro: function(){
-	    		stack.clientes = true;
+	    		stack.clientes.status = true;
+	    		stack.clientes.erro = "Não foi possível realizar o download do arquivo de clientes.";
 	    		noty({texto: "Não foi possível realizar o download do arquivo de clientes.", classe: "noty_erro", gruda: true});	    		
 	    		terminou();	    		
 	    	}});
@@ -224,10 +235,11 @@
 
 	    function clientes_del(){
 	    	pg.arquivoDeleta({nome: "db/clientes.txt", sucesso: function(){
-	    		stack.clientes = true;
+	    		stack.clientes.status = true;
 	    		terminou();
 	    	}, erro: function(){
-	    		stack.clientes = true;
+	    		stack.clientes.status = true;
+	    		stack.clientes.erro = "Arquivo de clientes não foi encontrado ou não existe.";
 	    		noty({texto: "Arquivo de clientes não foi encontrado ou não existe.", classe: "noty_erro", gruda: true});	
 	    		terminou();
 	    	}});
@@ -243,14 +255,15 @@
 				    			//noty({texto: obj[a].nome, gruda: false});
 				    			pg.dbExecute({query: "INSERT INTO ofertas (id, nome, assinatura) VALUES ('"+obj[a].id+"', '"+obj[a].nome+"', '"+obj[a].assinatura+"')"});
 				    		}
-				    		stack.ofertas = true;
+				    		stack.ofertas.status = true;
 				    		terminou();
 			    		}});
 			    	}});
 	    		}});
 
 	    	}, erro: function(){
-	    		stack.ofertas = true;
+	    		stack.ofertas.status = true;
+	    		stack.ofertas.erro = "Não foi possível realizar o download do arquivo de ofertas.";
 	    		noty({texto: "Não foi possível realizar o download do arquivo de ofertas.", classe: "noty_erro", gruda: true});	    		
 	    		terminou();
 	    	}});
@@ -260,14 +273,15 @@
 	    	pg.arquivoDeleta({nome: "db/ofertas.txt", sucesso: function(){
 	    		pg.dbOpen();
 	    		pg.dbExecute({query: "DROP TABLE IF EXISTS ofertas", sucesso(){
-	    			stack.ofertas = true;
+	    			stack.ofertas.status = true;
 	    			terminou();
 	    		}, erro: function(){
-	    			stack.ofertas = true;
+	    			stack.ofertas.status = true;
 	    			terminou();
 	    		}});
 	    	}, erro: function(){
-	    		stack.ofertas = true;
+	    		stack.ofertas.status = true;
+	    		stack.ofertas.erro = "Arquivo de ofertas não foi encontrado ou não existe.";
 	    		noty({texto: "Arquivo de ofertas não foi encontrado ou não existe.", classe: "noty_erro", gruda: true});	
 	    		terminou();
 	    	}});
@@ -278,7 +292,7 @@
 	    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS pedido (id unique, fk_oferta, valor_assinatura)", sucesso: function(){
 	    		pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura) VALUES ('1', '1', 'R$ 10,50')"});
 	    		pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura) VALUES ('2', '2', 'R$ 10,50')"});
-	    		stack.pedido = true;
+	    		stack.pedido.status = true;
 	    		terminou();
 	    	}});
 	    }
@@ -286,7 +300,7 @@
 	    function pedido_del(){
 	    	pg.dbOpen();
 	    	pg.dbExecute({query: "DROP TABLE IF EXISTS pedido", sucesso: function(){
-	    		stack.pedido = true;
+	    		stack.pedido.status = true;
 	    		terminou();
 	    	}});
 	    }
