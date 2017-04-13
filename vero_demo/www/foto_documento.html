@@ -60,7 +60,7 @@
 
 		<div class="head_mob">
 			<a href="#my-menu" class="botao_head ico_bars"></a>
-			<span class="titulo">Fotografar documento</span>
+			<span class="titulo">Documento</span>
 		</div>
 
 		<div class="notificacao"></div>
@@ -69,17 +69,24 @@
 
 	<!-- Inicio [body] -->
 	<div class="body">
-		<br/>
-		<div class="texto" id="console"></div>
-		<br/>
-		<div class="botoes">
-			<a href="#" class="botao botao_ico" onclick="return getPhoto(pictureSource.SAVEDPHOTOALBUM);"><span class="ico_camera"></span></a>
-			<a href="#" class="botao_v botao_ico" onclick="return capturePhoto();"><span class="ico_camera"></span></a>
-			<a href="#" class="botao botao_ico" onclick="return capturePhotoPersist();"><span class="ico_camera"></span> Persiste</a>
-			<a href="#" class="botao_x botao_ico" onclick="return deletePhotoPersist();"><span class="ico_camera"></span> Deleta</a>
+
+		<!-- Inicio [wrap] -->
+		<div class="wrap" style="text-align: center;">
+
+			<div class="botoes">
+				<!--
+				<a href="#" class="botao botao_ico" onclick="return getPhoto(pictureSource.SAVEDPHOTOALBUM);"><span class="ico_camera"></span></a>
+				<a href="#" class="botao_v botao_ico" onclick="return capturePhoto();"><span class="ico_camera"></span></a>-->
+				<a href="#" class="botao botao_ico" onclick="return capturePhotoPersist();"><span class="ico_camera"></span>Tirar foto</a>
+				<a href="#" class="botao_x botao_ico" onclick="return deletePhotoPersist();"><span class="ico_camera"></span> Deletar foto</a>
+			</div>
+
+			<br/>
+			<img style="position: relative; display:none; width: 90%;" id="image" src="" />
+
 		</div>
-		<br/>
-		<img style="display:none; width: 100%;" id="image" src="" />
+		<!-- Fim [wrap] -->
+
 	</div>
 	<!-- Fim [body] -->
 
