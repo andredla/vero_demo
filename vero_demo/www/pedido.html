@@ -90,7 +90,7 @@
 		<span class="desc">
 			Assinatura - R$ 10,00
 		</span>
-		<a class="custom ico_delete" onclick="return linha_remove($(this).parent());"></a>
+		<a class="custom ico_delete_r" onclick="return linha_remove($(this).parent());"></a>
 	</span>
 </div>
 
@@ -117,7 +117,10 @@
 
 			<!-- Inicio [lista] -->
 			<div class="lista lista_d">
-				<span class="titulo">Lista de pedidos:</span>
+				<span class="titulo">
+					<span class="txt">Lista de pedidos:</span>
+					<a href="#" class="ico ico_mais_b" onclick="return linha_cria();"></a>
+				</span>
 				<span class="linha">
 					<span class="label">
 						Oferta -
@@ -130,15 +133,14 @@
 					<span class="desc">
 						Assinatura - R$ 10,00
 					</span>
-					<a class="custom ico_delete" onclick="return linha_remove($(this).parent());"></a>
+					<a class="custom ico_delete_r" onclick="return linha_remove($(this).parent());"></a>
 				</span>
 			</div>
 			<!-- Fim [lista] -->
 
-			<br/>
-			<span class="botoes">
-				<a href="#" class="botao botao_ico" onclick="return linha_cria();"><span class="ico_mais"></span> Incluir oferta</a>
-				<a href="#" class="botao_v" onclick="return false;">Finalizar</a>				
+			<span class="lista_botoes">
+				<a href="#" class="botao botao_b" onclick="return false;">Finalizar</a>
+				<a href="#" class="botao botao_a botao_ico" onclick="return linha_cria();"><span class="ico_mais_w"></span></a>
 			</span>
 
 		</div>
