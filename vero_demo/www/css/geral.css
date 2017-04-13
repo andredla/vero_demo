@@ -203,7 +203,92 @@ background: linear-gradient(#FF7378, #F25056);
 .lista .titulo, .tabela .t_head td {color: #ffffff; background-color: #6E7C93; border-color: #5E6E88;}
 .lista .linha, .tabela td {border-color: #cccccc;}
 .lista .extra {color: #009CF7;}
+.lista .sucesso {color: #1ED760;}
+.lista .erro {color: #ff0000;}
 /* Fim [default] */
+
+/* Inicio [dribbble] */
+html, body  {background-color: #4A6A89;}
+.statusbar {background-color: #4A6A89;}
+.head_mob {background-color: #4A6A89;}
+.botao_head {background-color: transparent;}
+.botao_head:active {background-color: #7FA0C0; border-color: #7FA0C0;}
+.mm-menu {background-color: #4A6A89;}
+.mm-menu .mm-navbar .mm-title {color: #ffffff; font-weight: bold;}
+.mm-navbar {border-color: #3D5A75;}
+.mm-menu .mm-listview {border: 1px solid #406485; border-bottom-color: #51708D;}
+.mm-listview li {border: 1px solid; border-color: #406485; border-top-color: #51708D;}
+.mm-listview li a {color: #ffffff;}
+.mm-listview li a:hover {background-color: #527597;}
+.mm-listview li a:active {background-color: #527597;}
+.lista {background-color: transparent;}
+.lista .titulo {padding: 20px; font-size: 16px; color: #7E97B2; border-color: #D5E1EF; text-shadow: 1px 1px 1px #ffffff;
+background-color: #F5FAFE;
+background: -webkit-linear-gradient(#FDFEFF, #F5FAFE);
+background: -o-linear-gradient(#FDFEFF, #F5FAFE);
+background: -moz-linear-gradient(#FDFEFF, #F5FAFE);
+background: linear-gradient(#FDFEFF, #F5FAFE);
+}
+.lista .linha {padding: 10px; color: #607B99; background-color: #ffffff; border-color: #B9CCDE;}
+.lista .titulo .txt {position: relative; display: block; margin-right: 40px;}
+.lista .titulo .ico {position: absolute; display: inline-block; right: 10px; top: 50%; margin-top: -15px; padding: 15px;}
+.lista .titulo .ico:active {background-color: #ffffff;}
+.lista .label {color: #444444;}
+.lista .desc {color: #777777;}
+.lista .sucesso {color: #1ED760;}
+.lista .erro {color: #ff0000;}
+.lista_d .custom {right: 10px; margin-top: -15px; padding: 5px;}
+.lista_d .custom:active {background-color: #FFDFDF;}
+
+.botao_ico {padding: 5px;}
+.botao_ico span {padding: 15px;}
+.ico_mais_b {background: url(../imgs/plus_pedido.svg) center no-repeat; background-size: 30px;}
+.ico_mais_w {background: url(../imgs/plus_pedido_white.svg) center no-repeat; background-size: 25px;}
+.ico_delete_r {background: url(../imgs/delete-red.svg) center no-repeat; background-size: 20px;}
+
+.lista_botoes {position: relative; display: block; margin-top: -1px; padding: 8px; text-align: right; font-weight: bold; color: #444444; border: 1px solid #30577C;
+background-color: #4A6A89;
+background: -webkit-linear-gradient(#6B87A1, #4A6A89);
+background: -o-linear-gradient(#6B87A1, #4A6A89);
+background: -moz-linear-gradient(#6B87A1, #4A6A89);
+background: linear-gradient(#6B87A1, #4A6A89);
+}
+.botao_v {color: #ffffff; border-color: #0F856F;
+background-color: #4DC4CD;
+background: -webkit-linear-gradient(#60D8E1, #4DC4CD);
+background: -o-linear-gradient(#60D8E1, #4DC4CD);
+background: -moz-linear-gradient(#60D8E1, #4DC4CD);
+background: linear-gradient(#60D8E1, #4DC4CD);
+}
+.botao_v:active {background: #60D8E1;}
+.botao_a {color: #ffffff; border-color: #395E83;
+background-color: #527597;
+background: -webkit-linear-gradient(#7B94AD, #527597);
+background: -o-linear-gradient(#7B94AD, #527597);
+background: -moz-linear-gradient(#7B94AD, #527597);
+background: linear-gradient(#7B94AD, #527597);
+}
+.botao_a:active {background: #89A2BC;}
+.botao_b {color: #ffffff; border-color: #395E83;
+background-color: #39AD64;
+background: -webkit-linear-gradient(#47D27A, #39AD64);
+background: -o-linear-gradient(#47D27A, #39AD64);
+background: -moz-linear-gradient(#47D27A, #39AD64);
+background: linear-gradient(#47D27A, #39AD64);
+
+background-color: #809FBC;
+background: -webkit-linear-gradient(#99B3CB, #809FBC);
+background: -o-linear-gradient(#99B3CB, #809FBC);
+background: -moz-linear-gradient(#99B3CB, #809FBC);
+background: linear-gradient(#99B3CB, #809FBC);
+}
+.botao_b:active {background: #B8CBDD;}
+
+.ui-selectmenu-button, .ui-selectmenu-button:hover, .ui-selectmenu-button:focus {color: #444444; background-color: #EEF4F8;}
+.ui-selectmenu-button .ui-selectmenu-icon, .ui-selectmenu-button:hover .ui-selectmenu-icon, .ui-selectmenu-button:focus .ui-selectmenu-icon {background: url(../imgs/icons-svg/carat-d-black.svg) center no-repeat; background-size: 20px;}
+.ui-menu .ui-menu-item {color: #777777; background-color: #EEF4F8;}
+.ui-menu .ui-state-active, .ui-menu .ui-menu-item:active {color: #ffffff; background-color: #45C2FC; border-color: #3A9ECC;}
+/* Fim [dribbble] */
 /* Fim [temas] */
 
 @media (max-width: 725px) {
