@@ -59,15 +59,24 @@ function addStyle(src, callback) {
 	s.setAttribute( 'rel', "stylesheet" );
 	s.setAttribute( 'type', "text/css" );
 	s.onload=callback;
-	document.head.appendChild( s );
+	//document.head.appendChild( s );
+	document.head.insertBefore(s, document.head.childNodes[0]);
 }
 
 function include_init(){
+	/*
 	addStyle("css/jquery.mmenu.all.css", function(){});	
 	addStyle("css/jquery-ui.css", function(){});	
 	addStyle("css/animate.css", function(){});	
 	addStyle("css/alertas.css", function(){});	
-	addStyle("css/geral.css", function(){});	
+	addStyle("css/geral.css", function(){});
+	*/
+	addStyle("css/geral.css", function(){});
+	addStyle("css/alertas.css", function(){});
+	addStyle("css/animate.css", function(){});
+	addStyle("css/jquery-ui.css", function(){});
+	addStyle("css/jquery.mmenu.all.css", function(){});	
+
 
 	addScript("js/jquery.js", function(){
 		addScript("js/jquery-ui.js", function(){
