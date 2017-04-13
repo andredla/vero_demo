@@ -71,7 +71,7 @@ function include_init(){
 	addStyle("css/alertas.css", function(){});	
 	addStyle("css/geral.css", function(){});
 	*/
-	addStyle("css/geral.css", function(){});
+	//addStyle("css/geral.css", function(){});
 	addStyle("css/alertas.css", function(){});
 	addStyle("css/animate.css", function(){});
 	addStyle("css/jquery-ui.css", function(){});
