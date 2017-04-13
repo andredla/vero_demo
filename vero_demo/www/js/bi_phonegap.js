@@ -253,12 +253,13 @@
 			var opt = $.extend({
 				caminho: cordova.file.dataDirectory,
 				nome: "",
-				callback: function(){}
+				callback: function(){},
+				erro: function(err){ noty({texto: "Não foi possivel ler o arquivo.", classe: "noty_erro", gruda: false}); }
 			}, options);
 
 			var ret = {};
 			
-			pg.arquivoLer({caminho: opt.caminho, nome: opt.nome, callback: function(str){
+			pg.arquivoLer({caminho: opt.caminho, nome: opt.nome, erro: opt.erro, callback: function(str){
 				var spt = str.split("\n");
 				for(var a=0; a<spt.length; a++){
 					var item = spt[a].split("=");
