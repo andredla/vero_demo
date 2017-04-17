@@ -4,45 +4,45 @@
 4;-23.0000663;-43.3457797;Condominio Mario Henrique Simonsen;Av. das Americas, 3434;Rio de Janeiro;RJ
 4;-22.985429;-43.2006719;Restaurante Rayz;Rua Prudente de Morais, 416 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
 5;-22.9859251;-43.2007015;Opium;Rua Farme de Amoedo, 34 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-6;-22.9828746;-43.2028586;Papa Fina Restaurante;Rua Vinícius de Moraes, 153 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-7;-22.984767;-43.199786;Aipo & Aipim Restaurante;Rua Visconde de Pirajá, 145 - Ipanema;Rio de Janeiro;RJ
+6;-22.9828746;-43.2028586;Papa Fina Restaurante;Rua Vin&iacute;cius de Moraes, 153 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+7;-22.984767;-43.199786;Aipo &amp; Aipim Restaurante;Rua Visconde de Piraj&aacute;, 145 - Ipanema;Rio de Janeiro;RJ
 8;-22.9836511;-43.2007899;Rio Sushi;Rua Farme de Amoedo, 87 - Loja A - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-9;-22.9843672;-43.19953659999999;Azteka Culinária Mexicana;Rua Visconde de Pirajá, 156 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+9;-22.9843672;-43.19953659999999;Azteka Culin&aacute;ria Mexicana;Rua Visconde de Piraj&aacute;, 156 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
 10;-22.9850432;-43.2009458;Rota 66;Rua Farme de Amoedo, 47 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-11;-22.984576;-43.19622369999999;Via 44 Ristorante;Rua Visconde de Pirajá, 44 B - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-12;-22.9828521;-43.2077436;Gula Gula Ipanema;Rua Barão da Torre, 446 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-13;-22.9829586;-43.20834809999999;Manekineko;Rua Barão da Torre, 472 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+11;-22.984576;-43.19622369999999;Via 44 Ristorante;Rua Visconde de Piraj&aacute;, 44 B - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+12;-22.9828521;-43.2077436;Gula Gula Ipanema;Rua Bar&atilde;o da Torre, 446 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+13;-22.9829586;-43.20834809999999;Manekineko;Rua Bar&atilde;o da Torre, 472 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
 14;-22.9864714;-43.200742;Eleven Rio;Avenida Vieira Souto, 234 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-15;-22.9854096;-43.2049527;Zazá Bistrô - Ipanema;Rua Joana Angélica, 40 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-16;-22.9855124;-43.20731709999999;Quitéria;Rua Maria Quitéria, 27 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-17;-22.9831611;-43.2015976;Satyricon;Rua Barão da Torre, 192 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-18;-22.9852632;-43.2030103;Garota de Ipanema;Rua Vinícius de Moraes, 49 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-19;-22.9810197;-43.2067676;Rancho Português;Rua Maria Quitéria, 136 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+15;-22.9854096;-43.2049527;Zaz&aacute; Bistr&ocirc; - Ipanema;Rua Joana Ang&eacute;lica, 40 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+16;-22.9855124;-43.20731709999999;Quit&eacute;ria;Rua Maria Quit&eacute;ria, 27 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+17;-22.9831611;-43.2015976;Satyricon;Rua Bar&atilde;o da Torre, 192 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+18;-22.9852632;-43.2030103;Garota de Ipanema;Rua Vin&iacute;cius de Moraes, 49 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+19;-22.9810197;-43.2067676;Rancho Portugu&ecirc;s;Rua Maria Quit&eacute;ria, 136 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
 20;-22.985181;-43.196735;Fazendola;Rua Jangadeiros, 14 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
 21;-22.9864222;-43.2033309;Gabbiano Al Mare;Avenida Vieira Souto, 320 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-22;-22.9822519;-43.20473969999999;Restô Ipanema;Rua Joana Angélica, 184 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
+22;-22.9822519;-43.20473969999999;Rest&ocirc; Ipanema;Rua Joana Ang&eacute;lica, 184 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
 23;-22.985298;-43.196801;Brasileirinho;Rua Jangadeiros, 10 - Ipanema, Rio de Janeiro;Rio de Janeiro;RJ
-24;-22.999551;-43.348553;D.O.C Ristorante & Grand Cru Wine Store;Le Monde 3500 Bloco 3 Loja A - Avenida das Américas - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-25;-23.0008;-43.3427;Restaurante Família Gagliasso;Av. das Americas 3255 loja 144;Rio de Janeiro;RJ
-26;-22.9994617;-43.3440223;Pier Dreck Restaurante;Avenida das Américas, 3120 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-27;-22.9983578;-43.3511549;Restaurante Benedictine;Avenida das Américas, 4666, Rio de Janeiro;Rio de Janeiro;RJ
-28;-23.0034183;-43.33960829999999;Restaurante Bandeja Dourada;Condomínio Riviera de Fiori - Avenida Prefeito Dulcídio Cardoso, 2500 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-29;-22.997365;-43.351192;Pobre Juan - Parrilla Premium;Shopping VillageMall Terraço, Avenida das Américas, 3900 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-30;-22.9981759;-43.3514829;Viena;Barra Shopping - Avenida das Américas, 4666 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-31;-23.0008457;-43.3428179;Gabbiano;Shopping Barra Garden - Avenida das Américas, 3255 - Loja 142 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-32;-22.998115;-43.3512726;Capim Santo Rio de Janeiro;Av. das Américas, 3900 - Shopping Village Mall 3 piso - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-33;-22.9977077;-43.35109730000001;Quadrifoglio;Avenida das Américas, 3900 - 304 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-34;-22.9976208;-43.3511486;CT Brasserie Claude Troisgros;Village Mall - Avenida das Américas, 3900 - Loja 303 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-35;-23.0018545;-43.3493994;Sano;Barra Square Shopping Center - Avenida das Américas, 3555 - Loja 215 Bloco 2 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-36;-22.9974965;-43.3511599;Naga;Shopping Village Mall - Avenida das Américas, 3900 - Loja 302 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-37;-23.0009831;-43.3427236;Estação Saúde;Avenida das Américas, 3255 - 110/111/112 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-38;-22.9993561;-43.3456078;Eclético;Avenida João de Cabral de Mello Neto, 400 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-39;-22.9994012;-43.3487037;Pappa Jack - Centro Empresarial Le Monde;Avenida das Américas, 3500 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-40;-22.9976062;-43.35154229999999;The Fifties;Avenida das Américas, 3900 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+24;-22.999551;-43.348553;D.O.C Ristorante &amp; Grand Cru Wine Store;Le Monde 3500 Bloco 3 Loja A - Avenida das Am&eacute;ricas - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+25;-23.0008;-43.3427;Restaurante Fam&iacute;lia Gagliasso;Av. das Americas 3255 loja 144;Rio de Janeiro;RJ
+26;-22.9994617;-43.3440223;Pier Dreck Restaurante;Avenida das Am&eacute;ricas, 3120 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+27;-22.9983578;-43.3511549;Restaurante Benedictine;Avenida das Am&eacute;ricas, 4666, Rio de Janeiro;Rio de Janeiro;RJ
+28;-23.0034183;-43.33960829999999;Restaurante Bandeja Dourada;Condom&iacute;nio Riviera de Fiori - Avenida Prefeito Dulc&iacute;dio Cardoso, 2500 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+29;-22.997365;-43.351192;Pobre Juan - Parrilla Premium;Shopping VillageMall Terra&ccedil;o, Avenida das Am&eacute;ricas, 3900 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+30;-22.9981759;-43.3514829;Viena;Barra Shopping - Avenida das Am&eacute;ricas, 4666 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+31;-23.0008457;-43.3428179;Gabbiano;Shopping Barra Garden - Avenida das Am&eacute;ricas, 3255 - Loja 142 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+32;-22.998115;-43.3512726;Capim Santo Rio de Janeiro;Av. das Am&eacute;ricas, 3900 - Shopping Village Mall 3 piso - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+33;-22.9977077;-43.35109730000001;Quadrifoglio;Avenida das Am&eacute;ricas, 3900 - 304 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+34;-22.9976208;-43.3511486;CT Brasserie Claude Troisgros;Village Mall - Avenida das Am&eacute;ricas, 3900 - Loja 303 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+35;-23.0018545;-43.3493994;Sano;Barra Square Shopping Center - Avenida das Am&eacute;ricas, 3555 - Loja 215 Bloco 2 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+36;-22.9974965;-43.3511599;Naga;Shopping Village Mall - Avenida das Am&eacute;ricas, 3900 - Loja 302 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+37;-23.0009831;-43.3427236;Esta&ccedil;&atilde;o Sa&uacute;de;Avenida das Am&eacute;ricas, 3255 - 110/111/112 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+38;-22.9993561;-43.3456078;Ecl&eacute;tico;Avenida Jo&atilde;o de Cabral de Mello Neto, 400 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+39;-22.9994012;-43.3487037;Pappa Jack - Centro Empresarial Le Monde;Avenida das Am&eacute;ricas, 3500 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
+40;-22.9976062;-43.35154229999999;The Fifties;Avenida das Am&eacute;ricas, 3900 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
 41;-23.0026989;-43.3499536;Konomi Ai;Avenida Marechal Henrique Lott, 120 - Loja 120 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
 42;-23.0025063;-43.35046320000001;Rei dos Assados;Avenida Marechal Henrique Lott, 120 - Loja 104/105/106 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
 43;-23.0027979;-43.3501035;Los Frick;Rosa Shopping - Avenida Marechal Henrique Lott, 120 - Barra da Tijuca, Rio de Janeiro;Rio de Janeiro;RJ
-44;-23.657086;-46.5380514;The Coffe Is On The Table;Rua Adolfo Bastos, 68 - Vila Bastos;Santo André;São Paulo;SP
-45;-23.645881;-46.5421471;Grazie Napoli;Rua das Aroeiras, 317 - Jardim;Santo André;São Paulo;SP
-46;-23.5587637;-46.7009818;George V Alto de Pinheiros Hotel;Praça Roquete Pinto, 09 - Alto de Pinheiros;São Paulo;SP
-47;-23.5850463;-46.6779087;Pão com Carne Hamburgueria;Rua Joaquim Floriano, 595 - Itaim Bibi;São Paulo;SP
+44;-23.657086;-46.5380514;The Coffe Is On The Table;Rua Adolfo Bastos, 68 - Vila Bastos;Santo Andr&eacute;;S&atilde;o Paulo;SP
+45;-23.645881;-46.5421471;Grazie Napoli;Rua das Aroeiras, 317 - Jardim;Santo Andr&eacute;;S&atilde;o Paulo;SP
+46;-23.5587637;-46.7009818;George V Alto de Pinheiros Hotel;Pra&ccedil;a Roquete Pinto, 09 - Alto de Pinheiros;S&atilde;o Paulo;SP
+47;-23.5850463;-46.6779087;P&atilde;o com Carne Hamburgueria;Rua Joaquim Floriano, 595 - Itaim Bibi;S&atilde;o Paulo;SP
