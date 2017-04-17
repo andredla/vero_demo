@@ -171,6 +171,7 @@
 	    function fotoPersistida(){
 	    	window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs){
 	    		fs.getFile("foto.png", {create: false}, function(fileEntry){
+	    			$("#image").attr({src: ""}).show();
 	    			$("#image").attr({src: fileEntry.toURL()}).show();
 	    		}, function(){
 	    			$("#image").attr({src: ""}).hide();
