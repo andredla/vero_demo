@@ -290,9 +290,9 @@
 
 	    function pedido(){
 	    	pg.dbOpen();
-	    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS pedido (id unique, fk_oferta, valor_assinatura)", sucesso: function(){
-	    		pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura) VALUES ('1', '1', 'R$ 10,50')"});
-	    		pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura) VALUES ('2', '2', 'R$ 10,50')"});
+	    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS pedido (id unique, fk_oferta, valor_assinatura,nome_oferta)", sucesso: function(){
+	    		//pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura,nome_oferta) VALUES ('1', '1', '10,50','oferta1')"});
+	    		//pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura,nome_oferta) VALUES ('2', '2', '10,50','oferta2')"});
 	    		stack.pedido.status = true;
 	    		terminou();
 	    	}});
