@@ -171,8 +171,10 @@
 	    function fotoPersistida(){
 	    	window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fs){
 	    		fs.getFile("foto.png", {create: false}, function(fileEntry){
-	    			$("#image").attr({src: ""}).show();
-	    			$("#image").attr({src: fileEntry.toURL()}).show();
+	    			var d = new Date();
+					var t = d.getTime(); 
+
+	    			$("#image").attr({src: fileEntry.toURL()+"?t="+t}).show();
 	    		}, function(){
 	    			$("#image").attr({src: ""}).hide();
 	    		});	
