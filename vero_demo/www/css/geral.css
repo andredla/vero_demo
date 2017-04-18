@@ -83,6 +83,12 @@ html, body {height: auto !important; background-color: #4E8AC9;}
 .esq {text-align: left;}
 /* Fim [all] */
 
+/* Inicio [jquery_ui] */
+.ui-selectmenu-button.ui-button {width: auto; white-space: normal;}
+.ui-selectmenu-text {padding-right: 10px;}
+.ui-selectmenu-icon.ui-icon {position: absolute; right: 15px; top: 50%;margin-top: -10px; float: none;}
+/* Fim [jquery_ui] */
+
 /* Inicio [mmenu] */
 .mm-page {height: 100%;}
 .mmclasse {display: none;}
