@@ -252,10 +252,24 @@
 			    	pg.dbOpen();
 			    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS ofertas (id unique, nome, assinatura)", sucesso: function(){
 			    		pg.dbExecute({query: "DELETE FROM ofertas", sucesso: function(){
+				    		/*
 				    		for(var a=0; a<obj.length; a++){
 				    			//noty({texto: obj[a].nome, gruda: false});
 				    			pg.dbExecute({query: "INSERT INTO ofertas (id, nome, assinatura) VALUES ('"+obj[a].id+"', '"+obj[a].nome+"', '"+obj[a].assinatura+"')"});
 				    		}
+				    		*/
+
+				    		var a=0;
+				    		function insert(){
+				    			pg.dbExecute({query: "INSERT INTO ofertas (id, nome, assinatura) VALUES ('"+obj[a].id+"', '"+obj[a].nome+"', '"+obj[a].assinatura+"')", sucesso: function(){
+					    			if(a<obj.length){
+					    				a++;
+					    				insert();
+					    			}
+				    			}});
+				    		}
+				    		insert();
+				    		
 				    		stack.ofertas.status = true;
 				    		terminou();
 			    		}});
