@@ -108,8 +108,8 @@
 			<!-- Inicio [lista] -->
 			<div class="lista lista_d">
 				<span class="titulo">Resumo desenvolvedor</span>
-				<span class="linha">
-					<span class="label">Ofertas - clique para excluir</span>
+				<span class="linha" onclick="return pedido_del();">
+					<span class="label">Pedido - clique para excluir</span>
 					<span class="seta"></span>
 				</span>
 
@@ -207,13 +207,23 @@
     			"<span class='desc'>valor assinatura: "+join[a].valor_assinatura+"</span>"+
     			"</span>";
 
+    			/*
     			for(var b=0; b<5; b++){
     				$("#lightbox .conteudo .aqui").append(linha);
     			}
+    			*/
     			$("#lightbox .conteudo .aqui").append(linha);
     		}
     		lightbox();
     		return false;
+    	}
+
+    	function pedido_del(){
+    		pg.dbOpen();
+    		pg.dbExecute({query: "DELETE FROM PEDIDO", sucesso: function(){
+    			join = [];
+    			noty({texto: "Pedido excluído com sucesso.", classe: "noty_sucesso", gruda: false});
+    		}});
     	}
 
     	function lightbox(){
