@@ -252,24 +252,10 @@
 			    	pg.dbOpen();
 			    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS ofertas (id unique, nome, assinatura)", sucesso: function(){
 			    		pg.dbExecute({query: "DELETE FROM ofertas", sucesso: function(){
-				    		/*
 				    		for(var a=0; a<obj.length; a++){
 				    			//noty({texto: obj[a].nome, gruda: false});
 				    			pg.dbExecute({query: "INSERT INTO ofertas (id, nome, assinatura) VALUES ('"+obj[a].id+"', '"+obj[a].nome+"', '"+obj[a].assinatura+"')"});
 				    		}
-				    		*/
-
-				    		var a=0;
-				    		function insert(){
-				    			pg.dbExecute({query: "INSERT INTO ofertas (id, nome, assinatura) VALUES ('"+obj[a].id+"', '"+obj[a].nome+"', '"+obj[a].assinatura+"')", sucesso: function(){
-					    			if(a<obj.length){
-					    				a++;
-					    				insert();
-					    			}
-				    			}});
-				    		}
-				    		insert();
-				    		
 				    		stack.ofertas.status = true;
 				    		terminou();
 			    		}});
@@ -304,7 +290,7 @@
 
 	    function pedido(){
 	    	pg.dbOpen();
-	    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS pedido (id unique, fk_oferta, valor_assinatura,nome_oferta)", sucesso: function(){
+	    	pg.dbExecute({query: "CREATE TABLE IF NOT EXISTS pedido (id integer primary key autoincrement, fk_oferta, valor_assinatura,nome_oferta)", sucesso: function(){
 	    		//pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura,nome_oferta) VALUES ('1', '1', '10,50','oferta1')"});
 	    		//pg.dbExecute({query: "INSERT INTO pedido (id, fk_oferta, valor_assinatura,nome_oferta) VALUES ('2', '2', '10,50','oferta2')"});
 	    		stack.pedido.status = true;
