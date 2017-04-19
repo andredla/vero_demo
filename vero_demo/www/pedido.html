@@ -55,42 +55,11 @@
 	<span class="linha">
 		<span class="label">
 			Oferta -
-			<select name="oferta">
-				<option value="">Oferta 01</option>
-				<option value="">Oferta 02</option>
-				<option value="">Oferta 03</option>
-				<option value="">Oferta 04</option>
-				<option value="">Oferta 05</option>
-				<option value="">Oferta 06</option>
-				<option value="">Oferta 07</option>
-				<option value="">Oferta 08</option>
-				<option value="">Oferta 09</option>
-				<option value="">Oferta 10</option>
-				<option value="">Oferta 11</option>
-				<option value="">Oferta 12</option>
-				<option value="">Oferta 13</option>
-				<option value="">Oferta 14</option>
-				<option value="">Oferta 15</option>
-				<option value="">Oferta 16</option>
-				<option value="">Oferta 17</option>
-				<option value="">Oferta 18</option>
-				<option value="">Oferta 19</option>
-				<option value="">Oferta 20</option>
-				<option value="">Oferta 21</option>
-				<option value="">Oferta 22</option>
-				<option value="">Oferta 23</option>
-				<option value="">Oferta 24</option>
-				<option value="">Oferta 25</option>
-				<option value="">Oferta 26</option>
-				<option value="">Oferta 27</option>
-				<option value="">Oferta 28</option>
-				<option value="">Oferta 29</option>
-				<option value="">Oferta 30</option>
+			<select name="oferta" id="modelo_oferta" onChange="marcar_oferta(this);">
+				<option value="0" ass="">escolha</option>
 			</select>
 		</span>
-		<span class="desc">
-			Assinatura - R$ 10,00
-		</span>
+		<span class="desc">-</span>
 		<a class="custom ico_delete_r" onclick="return linha_remove($(this).parent());"></a>
 	</span>
 </div>
@@ -122,20 +91,6 @@
 					<span class="txt">Lista de pedidos:</span>
 					<a href="#" class="ico ico_mais_b" onclick="return linha_cria();"></a>
 				</span>
-				<span class="linha">
-					<span class="label">
-						Oferta -
-						<select name="oferta">
-							<option>Liberty plus</option>
-							<option>Liberty menos</option>
-							<option>Oferta Liberty mais controle</option>
-						</select>
-					</span>
-					<span class="desc">
-						Assinatura - R$ 10,00
-					</span>
-					<a class="custom ico_delete_r" onclick="return linha_remove($(this).parent());"></a>
-				</span>
 			</div>
 			<!-- Fim [lista] -->
 
@@ -165,11 +120,53 @@
     	}
 		
 		function onDeviceReady(){
+			procedimentos();
 			$(".lista select").selectmenu().selectmenu( "menuWidget" ).addClass( "scroll" );
 			$(".body").show();
 		}
 
+		function procedimentos(){
+			var tb_status_oferta = false;
+			var tb_status_pedido = false;
+			//checa se existe banco
+			chkBd = pg.dbOpen();
+			cria_combo_ofertas();
+			
+			
+		}
+		
+		function cria_combo_ofertas(){
+			pg.dbExecute({query: "SELECT id , nome, assinatura FROM ofertas ORDER BY nome ASC", sucesso:function(q,rs){
+						for (var a=0; a<rs.rows.length; a++){
+								$("#modelo_oferta").append('<option value="'+rs.rows.item(a).id+'" ass="'+rs.rows.item(a).assinatura+'">'+rs.rows.item(a).nome+'</option>');
+						}
+						carrega_pedido();
+				}});
+		}
+
+		
+		function carrega_pedido(){
+			pg.dbExecute({query: "SELECT id, fk_oferta, valor_assinatura, nome_oferta FROM pedido ORDER BY id ASC", sucesso:function(q,rs){
+						for (var a=0; a<rs.rows.length; a++){
+								desenha_linha(rs.rows.item(a).id,rs.rows.item(a).fk_oferta,rs.rows.item(a).valor_assinatura);
+						}
+				}});
+		}
+
 		function linha_cria(){
+			function pega_ultima_linha(){
+				pg.dbExecute({query: "SELECT id,fk_oferta FROM pedido ORDER BY id DESC LIMIT 0,1", sucesso:function(q,rs){
+						for (var a=0; a<rs.rows.length; a++){
+								desenha_linha(rs.rows.item(a).id,rs.rows.item(a).fk_oferta,'0,00');
+						}
+				}});	
+			}
+			
+			pg.dbExecute({query: "INSERT INTO pedido (fk_oferta) VALUES ('0')", sucesso:function (q,rs){
+					pega_ultima_linha();
+				}});		
+		}
+		function desenha_linha(id,item_sel,valor){
 			/*
 			var linha = $($(".temp .linha").get(0)).clone();
 			linha.find("select").selectmenu().selectmenu( "menuWidget" ).addClass( "scroll" );
@@ -179,10 +176,28 @@
 			*/
 			
 			var linha = $($(".temp .linha").get(0)).clone();
+
+			linha.attr("id","linha"+id);
+			linha.find("select").attr("id","select"+id);
+			linha.find("span.desc").attr("id","val_desc"+id);
+			linha.find("span.desc").html("Assinatura - R$"+valor);
+			linha.find("select").val(item_sel);
 			linha.find("select").selectmenu().selectmenu( "menuWidget" ).addClass( "scroll" );
+			linha.find("select").on("selectmenuchange",function( event, ui ) {marcar_oferta(id)});
 			$(".lista").append(linha);
+			//$("#val_desc"+id).html("Assinatura - R$"+valor);
 			$($(".lista .linha").last()).addClass("animated fadeInDown").bind("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){ $(this).removeClass("animated fadeInDown"); });
 			return false;
+		}
+		
+		function marcar_oferta(id){
+			var obj = $("#select"+id);
+			var id_linha = id;
+			var obj_val = $("#select"+id_linha).val();
+			var val_assinatura = $("#select"+id_linha).find('option:selected', this).attr('ass');
+			var nome_oferta = $("#select"+id_linha).find('option:selected', this).text();
+			$("#val_desc"+id).html("Assinatura - R$"+val_assinatura);
+			pg.dbExecute({query: "UPDATE pedido SET fk_oferta = '"+obj_val+"', valor_assinatura = '"+val_assinatura+"', nome_oferta = '"+nome_oferta+"' WHERE id = "+id_linha});
 		}
 
 		function linha_remove(el){
@@ -191,7 +206,10 @@
 				$(this).remove();
 			});
 			*/
-
+			var id = $(el).attr("id");
+			var id_linha = $(el).attr("id").replace("linha","");
+			pg.dbExecute({query: "DELETE FROM pedido WHERE id = "+id_linha});
+			
 			el.css({"background-color": "#ffffff", "z-index": 2}).addClass("animated zoomOutLeft").bind("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){ $(this).remove(); });
 			return false;
 		}
