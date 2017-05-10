@@ -94,6 +94,16 @@
 
     	function onDeviceReady(){
     		//noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
+		try{
+			window.FirebasePlugin.onTokenRefresh(function(token) {
+    // save this server-side and use it to push notifications to this device
+    alert(token);
+}, function(error) {
+    alert(error);
+});
+		}
+		catch{
+	}
     	}
     </script>
 </body>
