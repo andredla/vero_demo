@@ -103,8 +103,6 @@
 });
 			
 		window.FirebasePlugin.onNotificationOpen(function(notification) {
-    			//var obj = JSON.parse(notification);
-			alert(notification.destino);
 			if (notification.destino){
 				window.location=notification.destino;
 				//sincronizar.html
