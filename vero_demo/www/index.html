@@ -104,6 +104,7 @@
 			
 		window.FirebasePlugin.onNotificationOpen(function(notification) {
     			var obj = JSON.parse(notification);
+			alert(obj.destino);
 			if (obj.destino){
 				window.location=obj.destino;
 				//sincronizar.html
