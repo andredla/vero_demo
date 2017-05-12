@@ -103,7 +103,11 @@
 });
 			
 		window.FirebasePlugin.onNotificationOpen(function(notification) {
-    			alert("modo sync: "+JSON.stringify(notification));
+    			var obj = JSON.parse(notification);
+			if (obj.destino){
+				window.location=obj.destino;
+				//sincronizar.html
+			}
 		
 }, function(error) {
     alert(error);
