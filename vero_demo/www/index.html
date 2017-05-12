@@ -103,11 +103,8 @@
 });
 			
 		window.FirebasePlugin.onNotificationOpen(function(notification) {
-			if(notification.payload.sincronizar){
-    alert("modo sync: "+notification.payload.sincronizar);
-		}else{
-			alert("modo invalido.");	
-		}
+    			alert("modo sync: "+SON.stringify(notification));
+		
 }, function(error) {
     alert(error);
 });
