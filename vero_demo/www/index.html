@@ -103,7 +103,7 @@
 });
 			
 		window.FirebasePlugin.onNotificationOpen(function(notification) {
-    			alert("modo sync: "+SON.stringify(notification));
+    			alert("modo sync: "+JSON.stringify(notification));
 		
 }, function(error) {
     alert(error);
