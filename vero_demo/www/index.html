@@ -89,34 +89,7 @@
     <script type="text/javascript">
 		function init(){
 			app.initialize();
-			document.addEventListener("deviceready",onDeviceReady,false);
 		}
-
-    	function onDeviceReady(){
-    		//noty({titulo: "Bitch", texto: "Vero app funcionando corretamente.", classe: "noty_sucesso", gruda: false});
-		try{
-			window.FirebasePlugin.onTokenRefresh(function(token) {
-    // save this server-side and use it to push notifications to this device
-    //alert(token);
-}, function(error) {
-    alert(error);
-});
-			
-		window.FirebasePlugin.onNotificationOpen(function(notification) {
-			if (notification.destino){
-				window.location=notification.destino;
-				//sincronizar.html
-			}
-		
-}, function(error) {
-    alert(error);
-});
-			
-		}
-		catch(e){
-			alert("erro:"+e.message);
-	}
-    	}
     </script>
 </body>
 
