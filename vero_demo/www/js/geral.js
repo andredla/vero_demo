@@ -85,7 +85,9 @@ function include_init(){
 				addScript("js/jquery.mmenu.min.all.js", function(){
 					addScript("js/layout.js", function(){
 						addScript("js/jqueryui_notification.js", function(){
-							addScript("js/index.js", function(){ init(); });
+							addScript("js/index.js", function(){ 
+								addScript("js/notificacao.js", function(){init();});
+							});
 						});
 					});
 				});
