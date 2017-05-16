@@ -213,6 +213,9 @@
 			el.css({"background-color": "#ffffff", "z-index": 2}).addClass("animated zoomOutLeft").bind("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){ $(this).remove(); });
 			return false;
 		}
+	    function finalizar_pedido(){
+		bi.Alertas({tipo:"sucesso", texto: "Finalizado", ok:"window.location=\"sign.html\";"});    
+	    }
     </script>
 </body>
 
